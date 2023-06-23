@@ -18,7 +18,7 @@
 #define TRUE 1
 #define PROMPT "Phiros $ "
 #define ERR_MALLOC "Unable to allocate memory\n"
-#define ERR_FORK "Unable to fork and create phill process\n"
+#define ERR_FORK "Unable to fork and create chris process\n"
 #define ERR_PATH "No such file or directory\n"
 
 /* Points to an array of pointers to strings called the "environment" */
@@ -30,15 +30,15 @@ extern char **env;
  ** @ar: argument vector
  ** @pid: process ID
  ** @env: env var
- ** @ags: tokens
+ ** @args: tokens
  ** @status: shell status
  ** @log: command line
  **/
-typedef struct prosellee
+typedef struct prosey
 {
   int count;
   char **ar;
-  char **ags;
+  char **args;
   char *pid;
   int status;
   char *log;
@@ -71,23 +71,22 @@ typedef struct lls
 
 /**
  * struct rvl - single linked list
- ** @lvr: length of the variable
- ** @vl: value of the variable
- ** @lvl: length of the value
+ ** @lvr: length of variable
+ ** @val: value of variable
+ ** @lvl: length of value
  ** @nxt: next node
- ** Description: single linked list to store variables
+ ** Description: linked list for variable storage
  **/
 typedef struct rvl
 {
 	int lvr;
-	char *vl;
+	char *val;
 	int lvl;
 	struct rvl *nxt;
 } rv;
-
 /**
  * struct buil - Builtin struct for command args.
- * @nm: name ofcommand built i.e cd, exit, env
+ * @nm: name of command built i.e cd, exit, env
  * @g: data type pointer function.
  */
 typedef struct buil
@@ -99,7 +98,7 @@ typedef struct buil
 /* alists.c */
 sl *asne(sl **h, char sep);
 void fsl(sl **h);
-ln *alne(ln **h, char *line);
+ln *alne(ln **h, char *l);
 void fll(ln **h);
 
 /* alists2.c */
@@ -174,8 +173,8 @@ char *gv(const char *nm, char **env);
 int envi(pro *d);
 
 /* envb.c */
-char *cinfo(char *n, char *v);
-void senv(char *n, char *v, pro *d);
+char *cinfo(char *n, char *val);
+void senv(char *n, char *val, pro *d);
 int stenv(pro *d);
 int setenvv(pro *d);
 
@@ -206,10 +205,10 @@ char *enf(pro *d);
 char *eesh(pro *d);
 
 /* aerror2.c */
-char *egalias(char **ags);
+char *egalias(char **args);
 char *eenv(pro *d);
-char *eyntax(char **ags);
-char *eperm(char **ags);
+char *eyntax(char **args);
+char *eperm(char **args);
 char *ep126(pro *d);
 
 /* grror.c */
@@ -219,16 +218,16 @@ int gerror(pro *d, int ev);
 void gsigint(int sig);
 
 /* ahelp.c */
-void ahelpenv(void);
-void ahelps(void);
-void ahelpuns(void);
-void ahelpgen(void);
-void ahelpex(void);
+void myhp_env(void);
+void myhp_setenv(void);
+void myhp_unsetenv(void);
+void myhp_gen(void);
+void myhp_exit(void);
 
 /* ahelp2.c */
-void ahelp(void);
-void ahelpal(void);
-void ahelpcd(void);
+void myhp(void);
+void myhp_sis(void);
+void myhp_cd(void);
 
 /* ghelp.c */
 int ghelp(pro *d);
