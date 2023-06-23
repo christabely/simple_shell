@@ -25,7 +25,7 @@
 extern char **env;
 
 /**
- * struct prosellee - struct containing all data
+ * struct prosey - struct containing all data
  ** @count: lines count
  ** @ar: argument vector
  ** @pid: process ID
@@ -87,12 +87,12 @@ typedef struct rvl
 /**
  * struct buil - Builtin struct for command args.
  * @nm: name of command built i.e cd, exit, env
- * @g: data type pointer function.
+ * @f: data type pointer function.
  */
 typedef struct buil
 {
 	char *nm;
-	int (*g)(pro *d);
+	int (*f)(pro *d);
 } built;
 
 /* alists.c */
