@@ -18,9 +18,9 @@ int (*gbuilt(char *c))(pro *)
 	};
 	int i;
 
-	for (i = 0; builtin[i].name; i++)
+	for (i = 0; builtin[i].nm; i++)
 	{
-		if (christycmp(builtin[i].name, cmd) == 0)
+		if (christycmp(builtin[i].nm, c) == 0)
 			break;
 	}
 
