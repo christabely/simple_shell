@@ -7,7 +7,8 @@
  * @bl: type of swap
  * Return: swapped string
  */
- char *spchar(char *log, int bl)
+ char *_spchar(char *log, int bl)
+{
 	int i;
 
 	if (bl == 0)
