@@ -12,7 +12,7 @@ char *cinfo(char *n, char *val)
 	char *new;
 	int len_name, len_value, len;
 
-	len_name = christylen(n;
+	len_name = christylen(n);
 	len_value = christylen(val);
 	len = len_name + len_value + 2;
 	new = malloc(sizeof(char) * (len));
