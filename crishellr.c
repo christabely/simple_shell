@@ -5,7 +5,7 @@
  * @s: pointer
  * Return: @d
  */
-char *christycat(char *d, const char *s);
+char *christycat(char *d, const char *s)
 {
 	int k;
 	int l;
@@ -27,7 +27,7 @@ char *christycat(char *d, const char *s);
  * @s: pointer
  * Return: @d
  */
-char *christycpy(char *d, char *s);
+char *christycpy(char *d, char *s)
 {
 	size_t v;
 
@@ -45,7 +45,7 @@ char *christycpy(char *d, char *s);
  * @s2: string2
  * Return: Always 0.
  */
-int christycmp(char *s1, char *s2);
+int christycmp(char *s1, char *s2)
 {
 	int k;
 
@@ -64,7 +64,7 @@ int christycmp(char *s1, char *s2);
  * @c: chars
  * Return: @c
  */
-char *christychr(char *s, char c);
+char *christychr(char *s, char c)
 {
 	unsigned int j = 0;
 
@@ -81,7 +81,7 @@ char *christychr(char *s, char c);
  * @a: bytes accepted
  * Return: bytes
  */
-int christyspn(char *s, char *a);
+int christyspn(char *s, char *a)
 {
 	int k, l, bool;
 
