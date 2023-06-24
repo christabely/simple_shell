@@ -16,7 +16,7 @@
 #define TOK_BUFSIZE 128
 #define TOK_DELIM " \t\r\n\a"
 #define TRUE 1
-#define PROMPT "Phiros $ "
+#define PROMPT "Proshell $ "
 #define ERR_MALLOC "Unable to allocate memory\n"
 #define ERR_FORK "Unable to fork and create chris process\n"
 #define ERR_PATH "No such file or directory\n"
@@ -25,7 +25,7 @@
 extern char **env;
 
 /**
- * struct prosey - struct containing all data
+ * struct prosellee - struct containing all data
  ** @count: lines count
  ** @ar: argument vector
  ** @pid: process ID
@@ -42,7 +42,7 @@ typedef struct prosey
   char *pid;
   int status;
   char *log;
-  char **env;
+  char **_env;
 } pro;
 
 /**
@@ -87,12 +87,12 @@ typedef struct rvl
 /**
  * struct buil - Builtin struct for command args.
  * @nm: name of command built i.e cd, exit, env
- * @f: data type pointer function.
+ * @g: data type pointer function.
  */
 typedef struct buil
 {
 	char *nm;
-	int (*f)(pro *d);
+	int (*g)(pro *d);
 } built;
 
 /* alists.c */
@@ -151,7 +151,7 @@ char **sp(char *log);
 /* rvv.c */
 void cenv(rv **h, char *in, pro *d);
 int cvars(rv **h, char *in, char *st, pro *d);
-char *rlogg(r_var **h, char *log, char *nt, int nn);
+char *rlogg(rv **h, char *log, char *nt, int nn);
 char *rva(char *log, pro *d);
 
 /* gline.c */
