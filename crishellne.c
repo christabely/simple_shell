@@ -4,7 +4,7 @@
  * @d: data
  * Return: 1
  */
-int eline(pro *d);
+int eline(pro *d)
 {
 	int (*b)(pro *d);
 
