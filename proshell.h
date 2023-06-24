@@ -142,7 +142,7 @@ void slll(pro *d);
 char *rline(int *f);
 
 /* sp.c */
-char *spchar(char *log, int bl);
+char *_spchar(char *log, int bl);
 void an(sl **h1, ln **h2, char *log);
 void gnxt(sl **ls, ln **ll, pro *d);
 int sc(pro *d, char *log);
