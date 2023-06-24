@@ -4,7 +4,7 @@
  * @s: pointer
  * Return: string duplicated
  */
-char *christydup(const char *s);
+char *christydup(const char *s)
 {
 	char *nw;
 	size_t ln;
@@ -21,7 +21,7 @@ char *christydup(const char *s);
  * @s: pointer
  * Return: Always 0.
  */
-int christylen(const char *s);
+int christylen(const char *s)
 {
 	int ln;
 
@@ -36,7 +36,7 @@ int christylen(const char *s);
  * @d: deliminator
  * Return: 1 if are equals, 0 if not.
  */
-int chirstychars(char s[], const char *d);
+int chirstychars(char s[], const char *d)
 {
 	unsigned int j, k, l;
 
@@ -61,7 +61,7 @@ int chirstychars(char s[], const char *d);
  * @d: delimiter
  * Return: divided string
  */
-char *christytok(char s[], const char *d);
+char *christytok(char s[], const char *d)
 {
 	static char *sp, *se;
 	char *st;
@@ -108,7 +108,7 @@ char *christytok(char s[], const char *d);
  * @s: string
  * Return: 1 else 0
  */
-int christigit(const char *s);
+int christigit(const char *s)
 {
 	unsigned int j;
 
