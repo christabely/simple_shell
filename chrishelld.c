@@ -10,8 +10,8 @@ void cddt(pro *d)
 	char *rd, *cpd, *cps;
 
 	getcwd(pd, sizeof(pd));
-	cpd = christyup(pd);
-	set_env("OPD", cpd, d);
+	cpd = christydup(pd);
+	senv("OPD", cpd, d);
 	rd = d->args[1];
 	if (christycmp(".", rd) == 0)
 	{
@@ -59,100 +59,100 @@ void cdto(pro *d)
 
 	getcwd(pwd, sizeof(pwd));
 
-	dir = datash->args[1];
+	dir = d->args[1];
 	if (chdir(dir) == -1)
 	{
-		get_error(datash, 2);
+		gerror(d, 2);
 		return;
 	}
 
-	cp_pwd = _strdup(pwd);
-	set_env("OLDPWD", cp_pwd, datash);
+	cp_pwd = christydup(pwd);
+	senv("OLDPWD", cp_pwd, d);
 
-	cp_dir = _strdup(dir);
-	set_env("PWD", cp_dir, datash);
+	cp_dir = christydup(dir);
+	senv("PWD", cp_dir, d);
 
 	free(cp_pwd);
 	free(cp_dir);
 
-	datash->status = 0;
+	d->status = 0;
 
-	chdir(rd);
+	chdir(dir);
 }
 /**
- * cd_previous - changes to the previous directory
+ * cdps - changes to the previous directory
  *
- * @datash: data relevant (environ)
+ * @d: data relevant (environ)
  * Return: no return
  */
-void cd_previous(data_shell *datash)
+void cdps(pro *d)
 {
 	char pwd[PATH_MAX];
 	char *p_pwd, *p_oldpwd, *cp_pwd, *cp_oldpwd;
 
 	getcwd(pwd, sizeof(pwd));
-	cp_pwd = _strdup(pwd);
+	cp_pwd = christydup(pwd);
 
-	p_oldpwd = _getenv("OLDPWD", datash->_environ);
+	p_oldpwd = gv("OLDPWD", d->_env);
 
 	if (p_oldpwd == NULL)
 		cp_oldpwd = cp_pwd;
 	else
-		cp_oldpwd = _strdup(p_oldpwd);
+		cp_oldpwd = christydup(p_oldpwd);
 
-	set_env("OLDPWD", cp_pwd, datash);
+	senv("OLDPWD", cp_pwd, d);
 
 	if (chdir(cp_oldpwd) == -1)
-		set_env("PWD", cp_pwd, datash);
+		senv("PWD", cp_pwd, d);
 	else
-		set_env("PWD", cp_oldpwd, datash);
+		senv("PWD", cp_oldpwd, d);
 
-	p_pwd = _getenv("PWD", datash->_environ);
+	p_pwd = gv("PWD", d->_env);
 
-	write(STDOUT_FILENO, p_pwd, _strlen(p_pwd));
+	write(STDOUT_FILENO, p_pwd, christylen(p_pwd));
 	write(STDOUT_FILENO, "\n", 1);
 
 	free(cp_pwd);
 	if (p_oldpwd)
 		free(cp_oldpwd);
 
-	datash->status = 0;
+	d->status = 0;
 
 	chdir(p_pwd);
 }
 
 /**
- * cd_to_home - changes to home directory
+ * cdth - changes to home directory
  *
- * @datash: data relevant (environ)
+ * @d: data relevant (environ)
  * Return: no return
  */
-void cd_to_home(data_shell *datash)
+void cdth(pro *d)
 {
 	char *p_pwd, *home;
 	char pwd[PATH_MAX];
 
 	getcwd(pwd, sizeof(pwd));
-	p_pwd = _strdup(pwd);
+	p_pwd = christydup(pwd);
 
-	home = _getenv("HOME", datash->_environ);
+	home = gv("HOME", d->_env);
 
 	if (home == NULL)
 	{
-		set_env("OLDPWD", p_pwd, datash);
+		senv("OLDPWD", p_pwd, d);
 		free(p_pwd);
 		return;
 	}
 
 	if (chdir(home) == -1)
 	{
-		get_error(datash, 2);
+		gerror(d, 2);
 		free(p_pwd);
 		return;
 	}
 
-	set_env("OLDPWD", p_pwd, datash);
-	set_env("PWD", home, datash);
+	senv("OLDPWD", p_pwd, d);
+	senv("PWD", home, d);
 	free(p_pwd);
-	datash->status = 0;
+	d->status = 0;
 }
