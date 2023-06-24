@@ -7,7 +7,7 @@
  * @i: index
  * Return: repetitions
  */
-int rchar(char *log, int i);
+int rchar(char *log, int i)
 {
 	if (*(log - 1) == *log)
 		return (rchar(log - 1, i + 1));
@@ -24,7 +24,7 @@ int rchar(char *log, int i);
  * Return: index of error. 0 when there are no
  * errors
  */
-int eso(char *log, int i, char l);
+int eso(char *log, int i, char l)
 {
 	int c;
 
@@ -75,7 +75,7 @@ int eso(char *log, int i, char l);
  * @i: index
  * Return: 1 if there is an error. 0 in other case.
  */
- int fch(char *log, int *i);
+ int fch(char *log, int *i)
 {
 
 	for (*i = 0; log[*i]; *i += 1)
@@ -101,7 +101,7 @@ int eso(char *log, int i, char l);
  * @bl: to control msg error
  * Return: no return
  */
-void pse(pro *d, char *log, int i, int bl);
+void pse(pro *d, char *log, int i, int bl)
 {
 	char *msg, *msg2, *msg3, *error, *counter;
 	int length;
@@ -153,7 +153,7 @@ void pse(pro *d, char *log, int i, int bl);
  * @log: input string
  * Return: 1 if there is an error. 0 in other case
  */
- int cse(pro *d, char *log);
+ int cse(pro *d, char *log)
 {
 	int begin = 0;
 	int f_char = 0;
