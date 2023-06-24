@@ -6,7 +6,7 @@
  * @s: size
  * Return: NULL
  */
-void shellcpy(void *n, const void *p, unsigned int s);
+void shellcpy(void *n, const void *p, unsigned int s)
 {
 	char *char_p = (char *)p;
 	char *char_n = (char *)n;
@@ -22,7 +22,7 @@ void shellcpy(void *n, const void *p, unsigned int s);
  * @ns: for new size in byte
  * Return: @ptr else NULL
  */
-void *shelloc(void *p, unsigned int os, unsigned int ns);
+void *shelloc(void *p, unsigned int os, unsigned int ns)
 {
 	void *n;
 
@@ -56,7 +56,7 @@ void *shelloc(void *p, unsigned int os, unsigned int ns);
  * @ns: for new size in bytes
  * Return: ptr else NULL
  */
-char **shellocdp(char **p, unsigned int os, unsigned int ns);
+char **shellocdp(char **p, unsigned int os, unsigned int ns)
 {
 	char **n;
 	unsigned int j;
