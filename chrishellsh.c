@@ -4,7 +4,7 @@
  * @d: data
  * Return: 1 on success
  */
-int cds(pro *d);
+int cds(pro *d)
 {
 	char *rd;
 	int th, th2, td;
