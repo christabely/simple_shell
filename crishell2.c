@@ -13,7 +13,7 @@ char *error_env(pro *d)
 
 	stv = aitoa(d->count);
 	m = ": inabilit to add/remove from environment\n";
-	lenght = christylen(d->ar[0]) + christylen(;
+	lenght = christylen(d->ar[0]) + christylen(stv);
 	lenght += christylen(d->args[0]) + christylen(m) + 4;
 	error = malloc(sizeof(char) * (lenght + 1));
 	if (error == 0)
