@@ -56,7 +56,7 @@ void an(sl **h1, ln **h2, char *log)
 	int i;
 	char *line;
 
-	log = spchar(log, 0);
+	log = _spchar(log, 0);
 
 	for (i = 0; log[i]; i++)
 	{
@@ -72,7 +72,7 @@ void an(sl **h1, ln **h2, char *log)
 
 	line = christytok(log, ";|&");
 	do {
-		line = spchar(line, 1);
+		line = _spchar(line, 1);
 		alne(h2, line);
 		line = christytok(NULL, ";|&");
 	} while (line != NULL);
@@ -144,7 +144,7 @@ void gnxt(sl **ls, ln **ll, pro *d)
 
 	while (ll != NULL)
 	{
-		d->logt = ll->l;
+		d->log = ll->l;
 		d->args = sp(d->log);
 		loop = eline(d);
 		free(d->args);

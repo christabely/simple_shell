@@ -4,7 +4,7 @@
  * @n: integer
  * Return: @n
  */
-int gleen(int n);
+int gleen(int n)
 {
 	unsigned int gf;
 	int lenght = 1;
@@ -30,7 +30,7 @@ int gleen(int n);
  * @n: integer
  * Return: string
  */
-char *aitoa(int n);
+char *aitoa(int n)
 {
 	unsigned int gf;
 	int lenght = gleen(n);
@@ -66,7 +66,7 @@ char *aitoa(int n);
  * @s: string
  * Return: number
  */
-int atoii(char *s);
+int atoii(char *s)
 {
 	unsigned int count = 0, size = 0, my = 0, up = 1, e = 1, j;
 

@@ -15,7 +15,7 @@ void cddt(pro *d)
 	rd = d->args[1];
 	if (christycmp(".", rd) == 0)
 	{
-		set_env("PD", cpd, d);
+		senv("PD", cpd, d);
 		free(cpd);
 		return;
 	}
