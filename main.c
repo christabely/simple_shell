@@ -10,12 +10,12 @@ void fdata(pro *d)
 {
 	unsigned int i;
 
-	for (i = 0; d->_env[i]; i++)
+	for (i = 0; d->_environ[i]; i++)
 	{
-		free(d->_env[i]);
+		free(d->_environ[i]);
 	}
 
-	free(d->_env);
+	free(d->_environ);
 	free(d->pid);
 }
 
