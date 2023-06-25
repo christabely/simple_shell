@@ -120,7 +120,7 @@ int setenvv(pro *d)
 	}
 	r[j] = NULL;
 	free(d->_environ[k]);
-	free(d->__environ);
+	free(d->_environ);
 	d->_environ = r;
 	return (1);
 }
