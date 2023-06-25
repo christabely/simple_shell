@@ -7,7 +7,7 @@
 void christystring(char *d)
 {
 	int c = 0, k, l;
-	char *d, tp;
+	char *s, tp;
 
 	while (c >= 0)
 	{
