@@ -3,7 +3,7 @@
 /**
  * eline - finds builtins and commands
  *
- * @: data relevant (args)
+ * @d: data relevant (args)
  * Return: 1 on success.
  */
 int eline(pro *d)
