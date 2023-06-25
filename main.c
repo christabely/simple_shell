@@ -1,53 +1,53 @@
-#include "holberton.h"
+#include "proshell.h"
 
 /**
- * free_data - frees data structure
+ * fdata - frees data structure
  *
- * @datash: data structure
+ * @d: data structure
  * Return: no return
  */
-void free_data(data_shell *datash)
+void fdata(pro *d)
 {
 	unsigned int i;
 
-	for (i = 0; datash->_environ[i]; i++)
+	for (i = 0; d->_env[i]; i++)
 	{
-		free(datash->_environ[i]);
+		free(d->_env[i]);
 	}
 
-	free(datash->_environ);
-	free(datash->pid);
+	free(d->_env);
+	free(d->pid);
 }
 
 /**
- * set_data - Initialize data structure
+ * sdata - Initialize data structure
  *
- * @datash: data structure
- * @av: argument vector
+ * @d: data structure
+ * @ar: argument vector
  * Return: no return
  */
-void set_data(data_shell *datash, char **av)
+void sdata(pro *d, char **ar)
 {
 	unsigned int i;
 
-	datash->av = av;
-	datash->input = NULL;
-	datash->args = NULL;
-	datash->status = 0;
-	datash->counter = 1;
+	d->ar = ar;
+	d->log = NULL;
+	d->args = NULL;
+	d->status = 0;
+	d->count = 1;
 
-	for (i = 0; environ[i]; i++)
+	for (i = 0; envi]; i++)
 		;
 
-	datash->_environ = malloc(sizeof(char *) * (i + 1));
+	d->_env = malloc(sizeof(char *) * (i + 1));
 
-	for (i = 0; environ[i]; i++)
+	for (i = 0; env[i]; i++)
 	{
-		datash->_environ[i] = _strdup(environ[i]);
+		d->_env[i] = christydup(env[i]);
 	}
 
-	datash->_environ[i] = NULL;
-	datash->pid = aux_itoa(getpid());
+	d->_env[i] = NULL;
+	d->pid = aitoa(getpid());
 }
 
 /**
@@ -58,16 +58,16 @@ void set_data(data_shell *datash, char **av)
  *
  * Return: 0 on success.
  */
-int main(int ac, char **av)
+int main(int ac, char **ar)
 {
-	data_shell datash;
+	pro d;
 	(void) ac;
 
-	signal(SIGINT, get_sigint);
-	set_data(&datash, av);
-	shell_loop(&datash);
-	free_data(&datash);
-	if (datash.status < 0)
+	signal(SIGINT, gsigint);
+	sdata(&d, ar);
+	slll(&d);
+	fdata(&d);
+	if (d.status < 0)
 		return (255);
-	return (datash.status);
+	return (d.status);
 }
