@@ -13,6 +13,7 @@ void myhp_env(void)
 }
 /**
  * myhp_setenv - for info
+ *
  * Return: NULL
  */
 void myhp_setenv(void)
@@ -26,7 +27,8 @@ void myhp_setenv(void)
 	write(STDOUT_FILENO, hp, christylen(hp));
 }
 /**
- * myhp_unsetenv - for info
+ * myhp_unsetev - for info
+ *
  * Return: NULL
  */
 void myhp_unsetev(void)
