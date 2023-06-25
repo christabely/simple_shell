@@ -15,7 +15,7 @@ int eshell(pro *d)
 
 	if (d->args[1] != NULL)
 	{
-		u= atoii(d->args[1]);
+		u = atoii(d->args[1]);
 		i = christigit(d->args[1]);
 		s = christylen(d->args[1]);
 		b = u > (unsigned int)INT_MAX;
