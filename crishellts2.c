@@ -7,7 +7,7 @@
  * @lvl: value lenght
  * Return: @h
  */
-rv *arvn(rv **h, int lvr, char *val, int lvl);
+rv *arvn(rv **h, int lvr, char *val, int lvl)
 {
 	rv *nw, *tp;
 
