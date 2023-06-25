@@ -174,7 +174,7 @@ int cexec(pro *d)
 		return (1);
 	if (exec == 0)
 	{
-		dir = wh(d->args[0], d->_env);
+		dir = wh(d->args[0], d->_environ);
 		if (cecmd(dir, d) == 1)
 			return (1);
 	}
@@ -183,10 +183,10 @@ int cexec(pro *d)
 	if (pd == 0)
 	{
 		if (exec == 0)
-			dir = wh(d->args[0], d->_env);
+			dir = wh(d->args[0], d->_environ);
 		else
 			dir = d->args[0];
-		execve(dir + exec, d->args, d->_env);
+		execve(dir + exec, d->args, d->_environ);
 	}
 	else if (pd < 0)
 	{
