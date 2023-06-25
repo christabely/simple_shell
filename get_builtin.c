@@ -26,13 +26,3 @@ int (*gbuilt(char *c))(pro *)
 
 	return (builtin[i].f);
 }
-
-/**
- * gsigint - Handle the crtl + c call in prompt
- * @sig: Signal handler
- */
- void gsigint(int sig)
-{
-	(void)sig;
-	write(STDOUT_FILENO, "\n^-^ ", 5);
-}
