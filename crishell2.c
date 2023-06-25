@@ -1,10 +1,10 @@
 #include "proshell.h"
 /**
- * error_env - for error msgs
+ * eenv - for error msgs
  * @d: for data
  * Return: error message.
  */
-char *error_env(pro *d)
+char *eenv(pro *d)
 {
 	int lenght;
 	char *error;
@@ -37,7 +37,7 @@ char *error_env(pro *d)
  * @d: for data
  * Return: to error
  */
-char *errorp126(pro *d)
+char *ep126(pro *d)
 {
 	int lenght;
 	char *stv;
