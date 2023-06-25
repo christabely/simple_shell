@@ -36,7 +36,7 @@ void sdata(pro *d, char **ar)
 	d->status = 0;
 	d->count = 1;
 
-	for (i = 0; envi]; i++)
+	for (i = 0; env[]; i++)
 		;
 
 	d->_env = malloc(sizeof(char *) * (i + 1));
