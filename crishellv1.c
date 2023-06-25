@@ -24,7 +24,7 @@ int christyenv_nm(const char *nv, const char *nm)
  * @env: environ variable
  * Return: NULL else number
  */
-char *gv(const char *nm, char **env);
+char *gv(const char *nm, char **env)
 {
 	char *rv;
 	int k, kv;
@@ -48,7 +48,7 @@ char *gv(const char *nm, char **env);
  * @d: data
  * Return: 1 on success
  */
-int envi(pro *d);
+int envi(pro *d)
 {
 	int k, l;
 
