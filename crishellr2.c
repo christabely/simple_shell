@@ -31,7 +31,7 @@ int christylen(const char *s)
 	return (ln);
 }
 /**
- * christychars - compares string chars
+ * chirstychars - compares string chars
  * @s: string
  * @d: deliminator
  * Return: 1 if are equals, 0 if not.
