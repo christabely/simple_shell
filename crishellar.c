@@ -43,7 +43,7 @@ void cenv(rv **h, char *in, pro *d)
  * @d: data
  * Return: NULL
  */
- int cvars(rv **h, char *in, char *st, pro *d)
+int cvars(rv **h, char *in, char *st, pro *d)
 {
 	int j, ft, ld;
 
