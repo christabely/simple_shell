@@ -22,7 +22,7 @@
 #define ERR_PATH "No such file or directory\n"
 
 /* Points to an array of pointers to strings called the "environment" */
-extern char **env;
+extern char **environ;
 
 /**
  * struct prosey - struct containing all data
