@@ -101,7 +101,7 @@ char *enf(pro *d)
 	return (error);
 }
 /**
- * essh - error msg to exit
+ * eesh - error msg to exit
  * @d: variab data
  * Return: err msgs
  */
