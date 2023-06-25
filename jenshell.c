@@ -70,11 +70,11 @@ char *egd(pro *d)
 	return (error);
 }
 /**
- * sscd - for error msgs
+ * enf - for error msgs
  * @d: for data
  * Return: error sg
  */
-char *sscd(pro *d)
+char *enf(pro *d)
 {
 	int lenght;
 	char *error;
@@ -114,7 +114,7 @@ char *essh(pro *d)
 	stv = aitoa(d->count);
 	lenght = christylen(d->ar[0]) + christylen(stv);
 	lenght += christylen(d->args[0]) + christylen(d->args[1]) + 23;
-	error = malloc(sizeof(char) * (lgt + 1));
+	error = malloc(sizeof(char) * (lenght + 1));
 	if (error == 0)
 	{
 		free(stv);
@@ -122,7 +122,7 @@ char *essh(pro *d)
 	}
 	christycpy(error, d->ar[0]);
 	christycat(error, ": ");
-	chrstycat(error, stv);
+	christycat(error, stv);
 	christycat(error, ": ");
 	christycat(error, d->args[0]);
 	christycat(error, ": wrongn: ");
