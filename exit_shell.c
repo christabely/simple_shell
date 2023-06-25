@@ -1,10 +1,8 @@
 #include "proshell.h"
-
 /**
- * eshell - exits the shell
- *
- * @d: data relevant (status and args)
- * Return: 0 on success.
+ * eshell - for exiting shell
+ * @d: data
+ * Return: 0 on success
  */
 int eshell(pro *d)
 {
