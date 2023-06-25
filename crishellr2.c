@@ -13,7 +13,7 @@ char *christydup(const char *s)
 	nw = malloc(sizeof(char) * (ln + 1));
 	if (nw == NULL)
 		return (NULL);
-	christycpy(nw, s, ln + 1);
+	shellcpy(nw, s, ln + 1);
 	return (nw);
 }
 /**
@@ -69,7 +69,7 @@ char *christytok(char s[], const char *d)
 
 	if (s != NULL)
 	{
-		if (christychars(s, d))
+		if (chirstychars(s, d))
 			return (NULL);
 		sp = s;
 		j = christylen(s);
