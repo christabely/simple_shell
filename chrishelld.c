@@ -1,43 +1,45 @@
 #include "proshell.h"
 /**
- * cddt - changes to parent directory
- * @d: data
- * Return: NULL
+ * cddt - changes to the parent directory
+ *
+ * @d: data relevant (environ)
+ *
+ * Return: no return
  */
 void cddt(pro *d)
 {
-	char pd;
-	char *rd, *cpd, *cps;
+	char pwd[PATH_MAX];
+	char *dir, *cp_pwd, *cp_strtok_pwd;
 
-	getcwd(pd, sizeof(pd));
-	cpd = christydup(pd);
-	senv("OLDPWD", cpd, d);
-	rd = d->args[1];
-	if (christycmp(".", rd) == 0)
+	getcwd(pwd, sizeof(pwd));
+	cp_pwd = christydup(pwd);
+	senv("OLDPWD", cp_pwd, d);
+	dir = d->args[1];
+	if (christycmp(".", dir) == 0)
 	{
-		senv("PWD", cpd, d);
-		free(cpd);
+		senv("PWD", cp_pwd, d);
+		free(cp_pwd);
 		return;
 	}
-	if (christycmp("/", cpd) == 0)
+	if (christycmp("/", cp_pwd) == 0)
 	{
-		free(cpd);
+		free(cp_pwd);
 		return;
 	}
-	cps = cpd;
-	christystring(cps);
-	cps = christytok(cpd, "/");
-	if (cpd != NULL)
+	cp_strtok_pwd = cp_pwd;
+	christystring(cp_strtok_pwd);
+	cp_strtok_pwd = christytok(cp_strtok_pwd, "/");
+	if (cp_strtok_pwd != NULL)
 	{
-		cpd = christytok(NULL, "\0");
+		cp_strtok_pwd = christytok(NULL, "\0");
 
-		if (cpd != NULL)
-			christystring(cpd);
+		if (cp_strtok_pwd != NULL)
+			christystring(cp_strtok_pwd);
 	}
-	if (cpd != NULL)
+	if (cp_strtok_pwd != NULL)
 	{
-		chdir(cpd);
-		senv("PWD", cps, d);
+		chdir(cp_strtok_pwd);
+		senv("PWD", cp_strtok_pwd, d);
 	}
 	else
 	{
@@ -45,7 +47,7 @@ void cddt(pro *d)
 		senv("PWD", "/", d);
 	}
 	d->status = 0;
-	free(cpd);
+	free(cp_pwd);
 }
 /**
  * cdto - changes directory
