@@ -11,7 +11,7 @@ void cenv(rv **h, char *in, pro *d)
 	int w, r, i, vv;
 	char **en;
 
-	en = d->_env;
+	en = d->_environ;
 	for (w = 0; en[w]; w++)
 	{
 		for (i = 1, r = 0; en[w][r]; r++)
