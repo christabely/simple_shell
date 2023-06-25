@@ -31,7 +31,7 @@ void myhp_setenv(void)
  *
  * Return: NULL
  */
-void myhp_unsetev(void)
+void myhp_unsetenv(void)
 {
 	char *hp = "unsetenv: unsetenv (const char *nm)\n\t";
 
