@@ -52,11 +52,11 @@ int envi(pro *d)
 {
 	int k, l;
 
-	for (k = 0; d->_env[k]; k++)
+	for (k = 0; d->_environ[k]; k++)
 	{
-		for (l = 0; d->_env[k][l]; l++)
+		for (l = 0; d->_environ[k][l]; l++)
 			;
-		write(STDOUT_FILENO, d->_env[k], l);
+		write(STDOUT_FILENO, d->_environ[k], l);
 		write(STDOUT_FILENO, "\n", 1);
 	}
 	d->status = 0;
