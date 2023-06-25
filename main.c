@@ -39,14 +39,14 @@ void sdata(pro *d, char **ar)
 	for (i = 0; environ[i]; i++)
 		;
 
-	d->_env = malloc(sizeof(char *) * (i + 1));
+	d->_environ = malloc(sizeof(char *) * (i + 1));
 
 	for (i = 0; environ[i]; i++)
 	{
-		d->_env[i] = christydup(environ[i]);
+		d->_environ[i] = christydup(environ[i]);
 	}
 
-	d->_env[i] = NULL;
+	d->_environ[i] = NULL;
 	d->pid = aitoa(getpid());
 }
 
