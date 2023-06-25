@@ -36,14 +36,14 @@ void sdata(pro *d, char **ar)
 	d->status = 0;
 	d->count = 1;
 
-	for (i = 0; env[i]; i++)
+	for (i = 0; environ[i]; i++)
 		;
 
 	d->_env = malloc(sizeof(char *) * (i + 1));
 
-	for (i = 0; env[i]; i++)
+	for (i = 0; environ[i]; i++)
 	{
-		d->_env[i] = christydup(env[i]);
+		d->_env[i] = christydup(environ[i]);
 	}
 
 	d->_env[i] = NULL;
