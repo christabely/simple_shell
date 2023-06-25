@@ -95,7 +95,7 @@ void cdps(pro *d)
 	getcwd(pwd, sizeof(pwd));
 	cp_pwd = christydup(pwd);
 
-	p_oldpwd = gv("OLDPWD", d->_env);
+	p_oldpwd = gv("OLDPWD", d->_environ);
 
 	if (p_oldpwd == NULL)
 		cp_oldpwd = cp_pwd;
@@ -109,7 +109,7 @@ void cdps(pro *d)
 	else
 		senv("PWD", cp_oldpwd, d);
 
-	p_pwd = gv("PWD", d->_env);
+	p_pwd = gv("PWD", d->_environ);
 
 	write(STDOUT_FILENO, p_pwd, christylen(p_pwd));
 	write(STDOUT_FILENO, "\n", 1);
@@ -137,7 +137,7 @@ void cdth(pro *d)
 	getcwd(pwd, sizeof(pwd));
 	p_pwd = christydup(pwd);
 
-	home = gv("HOME", d->_env);
+	home = gv("HOME", d->_environ);
 
 	if (home == NULL)
 	{
