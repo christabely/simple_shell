@@ -7,7 +7,7 @@
  * @bl: type of swap
  * Return: swapped string
  */
- char *_spchar(char *log, int bl)
+char *_spchar(char *log, int bl)
 {
 	int i;
 
@@ -122,12 +122,12 @@ void gnxt(sl **ls, ln **ll, pro *d)
 }
 
 /**
- * sc - splits command lines 
+ * sc - splits command lines
  * @d: data structure
  * @log: input string
  * Return: 0 to exit, 1 to continue
  */
- int sc(pro *d, char *log)
+int sc(pro *d, char *log)
 {
 
 	sl *h1, *ls;
