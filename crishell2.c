@@ -33,7 +33,7 @@ char *eenv(pro *d)
 	return (error);
 }
 /**
- * errorp126 - for error msg
+ * ep126 - for error msg
  * @d: for data
  * Return: to error
  */
