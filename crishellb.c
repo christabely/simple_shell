@@ -21,7 +21,7 @@ int gleen(int n)
 	while (gf > 9)
 	{
 		lenght++;
-		gf = n1 / 10;
+		gf = n / 10;
 	}
 	return (lenght);
 }
