@@ -51,7 +51,7 @@ void myhp_gen(void)
 	hp = "Type 'hp name hp' to access and learn on the function 'nm'.\n\n ";
 	write(STDOUT_FILENO, hp, christylen(hp));
 	hp = " sis: sis [nm=['string']]\n cd: cd [-L|[-P [-e]] [-@]] ";
-	write(STDOUT_FILENO, hp, chrisylen(hp));
+	write(STDOUT_FILENO, hp, christylen(hp));
 	hp = "[dir]\nexit: exit [n]\n  env: env [option] [nm=val] [command ";
 	write(STDOUT_FILENO, hp, christylen(hp));
 	hp = "[args]]\n  setenv: setenv [variable] [val]\n  unsetenv: ";
