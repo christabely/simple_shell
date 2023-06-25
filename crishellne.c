@@ -15,5 +15,5 @@ int eline(pro *d)
 
 	if (b != NULL)
 		return (b(d));
-	return (cmd_e(d));
+	return (cexec(d));
 }
