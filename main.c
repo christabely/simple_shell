@@ -54,7 +54,7 @@ void sdata(pro *d, char **ar)
  * main - Entry point
  *
  * @ac: argument count
- * @av: argument vector
+ * @ar: argument vector
  *
  * Return: 0 on success.
  */
