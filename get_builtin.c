@@ -24,5 +24,5 @@ int (*gbuilt(char *c))(pro *)
 			break;
 	}
 
-	return (builtin[i].f);
+	return (builtin[i].g);
 }
