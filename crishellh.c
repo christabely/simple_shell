@@ -27,7 +27,7 @@ void myhp_setenv(void)
 	write(STDOUT_FILENO, hp, christylen(hp));
 }
 /**
- * myhp_unsetev - for info
+ * myhp_unsetenv - for info
  *
  * Return: NULL
  */
