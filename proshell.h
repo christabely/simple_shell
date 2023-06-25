@@ -42,7 +42,7 @@ char **args;
 char *pid;
 int status;
 char *log;
-char **_env;
+char **_environ;
 } pro;
 
 /**
