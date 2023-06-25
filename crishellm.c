@@ -12,7 +12,7 @@ void shellcpy(void *n, const void *p, unsigned int s)
 	char *char_n = (char *)n;
 	unsigned int j;
 
-	for (j = 0; j < size; j++)
+	for (j = 0; j < s; j++)
 		char_n[j] = char_p[j];
 }
 /**
