@@ -29,43 +29,43 @@ int eso(char *log, int i, char l)
 	int c;
 
 	c = 0;
-	if (*i == '\0')
+	if (*log == '\0')
 		return (0);
 
-	if (*i == ' ' || *i == '\t')
-		return (eso(in + 1, i + 1, l));
+	if (*log == ' ' || *log == '\t')
+		return (eso(log + 1, i + 1, l));
 
-	if (*i == ';')
+	if (*log == ';')
 		if (l == '|' || l == '&' || l == ';')
 			return (i);
 
-	if (*i == '|')
+	if (*log == '|')
 	{
 		if (l == ';' || l == '&')
 			return (i);
 
 		if (l == '|')
 		{
-			c = rchar(i, 0);
+			c = rchar(log, 0);
 			if (c == 0 || c > 1)
 				return (i);
 		}
 	}
 
-	if (*i == '&')
+	if (*log == '&')
 	{
 		if (l == ';' || l == '|')
 			return (i);
 
 		if (l == '&')
 		{
-			c = rchar(i, 0);
+			c = rchar(log, 0);
 			if (c == 0 || c > 1)
 				return (i);
 		}
 	}
 
-	return (eso(i + 1, i + 1, *i));
+	return (eso(log + 1, i + 1, *log));
 }
 
 /**
