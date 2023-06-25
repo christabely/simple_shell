@@ -1,7 +1,7 @@
 #include "proshell.h"
 
 /**
- * spchar - swaps | and & for non-printed chars
+ * _spchar - swaps | and & for non-printed chars
  *
  * @log: input string
  * @bl: type of swap
