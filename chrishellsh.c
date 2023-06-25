@@ -14,8 +14,8 @@ int cds(pro *d)
 	if (rd != NULL)
 	{
 		th = christycmp("$HOME", rd);
-		th2 = christycmp("~", dr);
-		td = christycmp("--", dr);
+		th2 = christycmp("~", rd);
+		td = christycmp("--", rd);
 	}
 	if (rd == NULL || !th || !th2 || !td)
 	{
