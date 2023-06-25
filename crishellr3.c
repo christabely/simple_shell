@@ -1,7 +1,7 @@
 #include "proshell.h"
 /**
  * christystring - for string reversal
- * @s: string
+ * @d: string
  * Return: NULL
  */
 void christystring(char *d)
