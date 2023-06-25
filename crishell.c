@@ -105,7 +105,7 @@ char *enf(pro *d)
  * @d: variab data
  * Return: err msgs
  */
-char *essh(pro *d)
+char *eesh(pro *d)
 {
 	int lenght;
 	char *error;
