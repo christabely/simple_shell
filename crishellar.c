@@ -11,7 +11,7 @@ void cenv(rv **h, char *in, pro *d)
 	int w, r, i, vv;
 	char **en;
 
-	en = d->en;
+	en = d->_env;
 	for (w = 0; en[w]; w++)
 	{
 		for (i = 1, r = 0; en[w][r]; r++)
@@ -72,7 +72,7 @@ void cenv(rv **h, char *in, pro *d)
 				cenv(h, in + j, d);
 		}
 	}
-	return (i);
+	return (j);
 }
 /**
  * rlogg - replaces string
@@ -94,7 +94,7 @@ char *rlogg(rv **h, char *log, char *nt, int nn)
 		{
 			if (!(indx->lvr) && !(indx->lvl))
 			{
-				nt[l] = log[j];
+				nt[l] = log[m];
 				l++;
 			}
 			else if (indx->lvr && !(indx->lvl))
@@ -107,7 +107,7 @@ char *rlogg(rv **h, char *log, char *nt, int nn)
 			{
 				for (n = 0; n < indx->lvl; n++)
 				{
-					nt[] = indx->val[n];
+					nt[l] = indx->val[n];
 					l++;
 				}
 				m += (indx->lvr);
@@ -135,10 +135,10 @@ char *rva(char *log, pro *d)
 	char *ss, *kt;
 	int t, b;
 
-	ss = aitoa(d->ss);
+	ss = aitoa(d->status);
 	u = NULL;
 
-	t = cvars(&h, log, ss, d);
+	t = cvars(&u, log, ss, d);
 
 	if (u == NULL)
 	{
