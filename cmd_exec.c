@@ -8,15 +8,15 @@
  */
 int idir(char *ph, int *i)
 {
-	if (pth[*i] == ':')
+	if (ph[*i] == ':')
 		return (1);
 
-	while (pth[*i] != ':' && pth[*i])
+	while (ph[*i] != ':' && ph[*i])
 	{
 		*i += 1;
 	}
 
-	if (pth[*i])
+	if (ph[*i])
 		*i += 1;
 
 	return (0);
@@ -134,7 +134,7 @@ int cecmd(char *dr, pro *d)
 
 	if (christycmp(d->args[0], dr) != 0)
 	{
-		if (access(dir, X_OK) == -1)
+		if (access(dr, X_OK) == -1)
 		{
 			gerror(d, 126);
 			free(dr);
