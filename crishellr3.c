@@ -4,7 +4,7 @@
  * @s: string
  * Return: NULL
  */
-void christystring(char *d);
+void christystring(char *d)
 {
 	int c = 0, k, l;
 	char *d, tp;
