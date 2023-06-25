@@ -11,11 +11,11 @@ void cddt(pro *d)
 
 	getcwd(pd, sizeof(pd));
 	cpd = christydup(pd);
-	senv("OPD", cpd, d);
+	senv("OLDPWD", cpd, d);
 	rd = d->args[1];
 	if (christycmp(".", rd) == 0)
 	{
-		senv("PD", cpd, d);
+		senv("PWD", cpd, d);
 		free(cpd);
 		return;
 	}
