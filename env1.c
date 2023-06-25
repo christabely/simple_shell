@@ -37,23 +37,23 @@ void senv(char *n, char *val, pro *d)
 	int i;
 	char *var_env, *name_env;
 
-	for (i = 0; d->_env[i]; i++)
+	for (i = 0; d->_environ[i]; i++)
 	{
-		var_env = christydup(d->_env[i]);
+		var_env = christydup(d->_environ[i]);
 		name_env = christytok(var_env, "=");
 		if (christycmp(name_env, n) == 0)
 		{
-			free(d->_env[i]);
-			d->_env[i] = cinfo(name_env, val);
+			free(d->_environ[i]);
+			d->_environ[i] = cinfo(name_env, val);
 			free(var_env);
 			return;
 		}
 		free(var_env);
 	}
 
-	d->_env = shellocdp(d->_env, i, sizeof(char *) * (i + 2));
-	d->_env[i] = cinfo(n, val);
-	d->_env[i + 1] = NULL;
+	d->_environ = shellocdp(d->_environ, i, sizeof(char *) * (i + 2));
+	d->_environ[i] = cinfo(n, val);
+	d->_environ[i + 1] = NULL;
 }
 
 /**
@@ -94,9 +94,9 @@ int setenvv(pro *d)
 		return (1);
 	}
 	k = -1;
-	for (i = 0; d->_env[i]; i++)
+	for (i = 0; d->_environ[i]; i++)
 	{
-		var_env = christydup(d->_env[i]);
+		var_env = christydup(d->_environ[i]);
 		name_env = christytok(var_env, "=");
 		if (christycmp(name_env, d->args[1]) == 0)
 		{
@@ -110,17 +110,17 @@ int setenvv(pro *d)
 		return (1);
 	}
 	r = malloc(sizeof(char *) * (i));
-	for (i = j = 0; d->_env[i]; i++)
+	for (i = j = 0; d->_environ[i]; i++)
 	{
 		if (i != k)
 		{
-			r[j] = d->_env[i];
+			r[j] = d->_environ[i];
 			j++;
 		}
 	}
 	r[j] = NULL;
-	free(d->_env[k]);
-	free(d->_env);
-	d->_env = r;
+	free(d->_environ[k]);
+	free(d->__environ);
+	d->_environ = r;
 	return (1);
 }
