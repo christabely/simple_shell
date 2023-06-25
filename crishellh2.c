@@ -1,6 +1,6 @@
 #include "proshell.h"
 /**
- * myhelp - for builtin help info
+ * myhp - for builtin help info
  * Return: NULL
  */
 void myhp(void)
