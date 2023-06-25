@@ -25,24 +25,24 @@
 extern char **env;
 
 /**
- * struct prosellee - struct containing all data
+ * struct prosey - struct containing all data
  ** @count: lines count
  ** @ar: argument vector
  ** @pid: process ID
- ** @env: env var
+ ** @_env: env var
  ** @args: tokens
  ** @status: shell status
  ** @log: command line
  **/
 typedef struct prosey
 {
-  int count;
-  char **ar;
-  char **args;
-  char *pid;
-  int status;
-  char *log;
-  char **_env;
+int count;
+char **ar;
+char **args;
+char *pid;
+int status;
+char *log;
+char **_env;
 } pro;
 
 /**
