@@ -75,7 +75,7 @@ ln *alne(ln **h, char *l)
 	{
 		while (tp->nxt != NULL)
 			tp = tp->nxt;
-		tp->nt = nw;
+		tp->nxt = nw;
 	}
 	return (*h);
 }
