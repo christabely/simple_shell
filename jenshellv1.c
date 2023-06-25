@@ -48,7 +48,7 @@ char *gv(const char *nm, char **env)
  * @d: data
  * Return: 1 on success
  */
-int envi(pro *d)
+int _envi(pro *d)
 {
 	int k, l;
 
