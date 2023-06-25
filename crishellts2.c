@@ -30,7 +30,7 @@ rv *arvn(rv **h, int lvr, char *val, int lvl)
 	{
 		while (tp->nxt != NULL)
 			tp = tp->nxt;
-		tp->nx = nw;
+		tp->nxt = nw;
 	}
 	return (*h);
 }
