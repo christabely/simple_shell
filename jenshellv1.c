@@ -44,7 +44,7 @@ char *gv(const char *nm, char **env)
 	return (rv + kv);
 }
 /**
- * env - prints environ variables
+ * _env - prints environ variables
  * @d: data
  * Return: 1 on success
  */
