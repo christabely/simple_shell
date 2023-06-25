@@ -170,7 +170,7 @@ int cexec(pro *d);
 
 /* enva.c */
 char *gv(const char *nm, char **env);
-int envi(pro *d);
+int _env(pro *d);
 
 /* envb.c */
 char *cinfo(char *n, char *val);
