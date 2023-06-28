@@ -154,14 +154,14 @@ int c_x_e(project_shell *dtsh, char *input)
 	f_c = cj_first_char(input, &b);
 	if (f_c == -1)
 	{
-		p_s_e(dtsh, input, b, 0);
+		p_x_e(dtsh, input, b, 0);
 		return (1);
 	}
 
 	q = cj_e_s_p(input + b, 0, *(input + b));
 	if (q != 0)
 	{
-		p_s_e(dtsh, input, b + q, 1);
+		p_x_e(dtsh, input, b + q, 1);
 		return (1);
 	}
 
