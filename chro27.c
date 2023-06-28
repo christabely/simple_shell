@@ -43,7 +43,7 @@ input[z] = (input[z] == 12 ? '&' : input[z]);
 z++;
 }
 }
-return input;
+return (input);
 }
 
 /**
@@ -160,8 +160,8 @@ cj_free_sep_list(&hhs);
 cj_free_line_list(&hhl);
 
 if (loop == 0)
-return 0;
-return 1;
+return (0);
+return (1);
 }
 /**
  * cj_split_line - tokenizes the input string
@@ -202,5 +202,5 @@ token = cj_strtok(NULL, TOK_DELIM);
 tokens[z] = token;
 }
 
-return tokens;
+return (tokens);
 }
