@@ -94,7 +94,7 @@ typedef struct builtin_s
 
 char *cj_strcat_cd(project_shell *dtsh, char *msg, char *error, char *ver_s);
 char *e_get_cd(project_shell *dtsh);
-char *e_not_found(project_shell *dtsh);
+char *e_not_f(project_shell *dtsh);
 char *e_exit_s(project_shell *dtsh);
 char *cj_strdup(const char *s);
 int cj_strlen(const char *s);
