@@ -45,7 +45,8 @@ return (dest);
  * cj_strcmp - Function that compares two strings.
  * @s1: string to be compared
  * @s2: string to be compared
- * Return: 0 if the strings are equal, positive value if s1 > s2, negative value if s1 < s2
+ * Return: 0 if the strings are equal, positive value 
+ * if s1 > s2, negative value if s1 < s2
  */
 int cj_strcmp(char *s1, char *s2)
 {
