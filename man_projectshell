@@ -1,0 +1,38 @@
+B.\"Manual page for simple shell group project.
+.\"Created by Christabel Aidoo and Ogem (Jennifer) Ezoh
+
+.Created on the 20th of June 2023.
+
+.SH NAME
+This shell is a unix shell inteperator.
+
+.SH COPYRIGHT
+Copyrighted (C) 2023 by Christabel Aidoo and Ogem (Jennifer) Ezoh
+
+.SH DESCRIPTION
+Commands are executed from the standard input.
+
+.SH ARGUMENTS
+It reads, executes commands then exits. The exit status is 0 when no commands are executed,
+
+.SH INVOCATION
+It is executed interactively.
+
+.SH DEFINITIONS
+All;definitionscare self explanatory,
+
+.SH Command Execution
+Shell executes the named program in a separate execution environment.
+
+.SH Environment
+An array of strings when invoked is called an environment,
+
+.SH Exit Status
+These builtins returns an integer.
+
+.SH BUILTINS
+The builtin command below are supported
+.B setenv .B unsetenv .B exit
+
+.SH AUTHORS
+Christabel Aidoo & Ogem (Jennifer) Ezoh
