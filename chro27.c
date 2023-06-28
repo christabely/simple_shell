@@ -1,208 +1,209 @@
-#include "phiros.h"
+#include "proshell.h"
 
 /**
- * pr_swap_char - swaps | and & for non-printed chars
+ * cj_swap_char - swaps | and & for non-printed chars
  * @input: input string
  * @bool: type of swap
  * Return: swapped string
  */
-char *pr_swap_char(char *input, int bool)
+char *cj_swap_char(char *input, int bool)
 {
-int u;
+    int z;
 
-if (bool == 0)
-{
-u = 0;
-while (input[u])
-{
-if (input[u] == '|')
-{
-if (input[u + 1] != '|')
-input[u] = 16;
-else
-u++;
+    if (bool == 0)
+    {
+        z = 0;
+        while (input[z])
+        {
+            if (input[z] == '|')
+            {
+                if (input[z + 1] != '|')
+                    input[z] = 16;
+                else
+                    z++;
+            }
+
+            if (input[z] == '&')
+            {
+                if (input[z + 1] != '&')
+                    input[z] = 12;
+                else
+                    z++;
+            }
+            z++;
+        }
+    }
+    else
+    {
+        z = 0;
+        while (input[z])
+        {
+            input[z] = (input[z] == 16 ? '|' : input[z]);
+            input[z] = (input[z] == 12 ? '&' : input[z]);
+            z++;
+        }
+    }
+    return input;
 }
 
-if (input[u] == '&')
-{
-if (input[u + 1] != '&')
-input[u] = 12;
-else
-u++;
-}
-u++;
-}
-}
-else
-{
-u = 0;
-while (input[u])
-{
-input[u] = (input[u] == 16 ? '|' : input[u]);
-input[u] = (input[u] == 12 ? '&' : input[u]);
-u++;
-}
-}
-return (input);
-}
 /**
- * pr_add_nodes - add separators and command lines in the lists
- * @hs: head of separator list
- * @hl: head of command lines list
+ * cj_add_nodes - add separators and command lines in the lists
+ * @hhs: head of separator list
+ * @hhl: head of command lines list
  * @input: input string
  * Return: no return
  */
-void pr_add_nodes(sep_list **hs, line_list **hl, char *input)
+void cj_add_nodes(sep_list **hhs, line_list **hhl, char *input)
 {
-	int u;
-	char *line;
+    int z;
+    char *line;
 
-	input = pr_swap_char(input, 0);
+    input = cj_swap_char(input, 0);
 
-	for (u = 0; input[u]; u++)
-	{
-		if (input[u] == ';')
-			pr_add_sep_node_end(hs, input[u]);
+    for (z = 0; input[z]; z++)
+    {
+        if (input[z] == ';')
+            cj_add_sep_node_end(hhs, input[z]);
 
-		if (input[u] == '|' || input[u] == '&')
-		{
-			pr_add_sep_node_end(hs, input[u]);
-			u++;
-		}
-	}
+        if (input[z] == '|' || input[z] == '&')
+        {
+            cj_add_sep_node_end(hhs, input[z]);
+            z++;
+        }
+    }
 
-	line = pr_strtok(input, ";|&");
-	do {
-		line = pr_swap_char(line, 1);
-		pr_add_line_node_end(hl, line);
-		line = pr_strtok(NULL, ";|&");
-	} while (line != NULL);
-
+    line = cj_strtok(input, ";|&");
+    do {
+        line = cj_swap_char(line, 1);
+        cj_add_line_node_end(hhl, line);
+        line = cj_strtok(NULL, ";|&");
+    } while (line != NULL);
 }
+
 /**
- * pr_go_next - go to the next command line stored
- * @l_s: separator list
- * @l_l: command line list
- * @dsh: data structure
+ * cj_go_next - go to the next command line stored
+ * @ll_s: separator list
+ * @ll_l: command line list
+ * @dtsh: data structure
  * Return: no return
  */
-void pr_go_next(sep_list **l_s, line_list **l_l, phiros_shell *dsh)
+void cj_go_next(sep_list **ll_s, line_list **ll_l, project_shell *dtsh)
 {
-	int loop_sep;
-	sep_list *ls_s;
-	line_list *ls_l;
+    int loop_sep;
+    sep_list *ls_s;
+    line_list *ls_l;
 
-	loop_sep = 1;
-	ls_s = *l_s;
-	ls_l = *l_l;
+    loop_sep = 1;
+    ls_s = *ll_s;
+    ls_l = *ll_l;
 
-	while (ls_s != NULL && loop_sep)
-	{
-		if (dsh->status == 0)
-		{
-			if (ls_s->separator == '&' || ls_s->separator == ';')
-				loop_sep = 0;
-			if (ls_s->separator == '|')
-				ls_l = ls_l->next, ls_s = ls_s->next;
-		}
-		else
-		{
-			if (ls_s->separator == '|' || ls_s->separator == ';')
-				loop_sep = 0;
-			if (ls_s->separator == '&')
-				ls_l = ls_l->next, ls_s = ls_s->next;
-		}
-		if (ls_s != NULL && !loop_sep)
-			ls_s = ls_s->next;
-	}
+    while (ls_s != NULL && loop_sep)
+    {
+        if (dtsh->status == 0)
+        {
+            if (ls_s->separator == '&' || ls_s->separator == ';')
+                loop_sep = 0;
+            if (ls_s->separator == '|')
+                ls_l = ls_l->next, ls_s = ls_s->next;
+        }
+        else
+        {
+            if (ls_s->separator == '|' || ls_s->separator == ';')
+                loop_sep = 0;
+            if (ls_s->separator == '&')
+                ls_l = ls_l->next, ls_s = ls_s->next;
+        }
+        if (ls_s != NULL && !loop_sep)
+            ls_s = ls_s->next;
+    }
 
-	*l_s = ls_s;
-	*l_l = ls_l;
+    *ll_s = ls_s;
+    *ll_l = ls_l;
 }
 
 /**
- * pr_split_commands - splits command lines according to
+ * cj_split_commands - splits command lines according to
  * the separators ;, | and &, and executes them
- * @dsh: data structure
+ * @dtsh: data structure
  * @input: input string
  * Return: 0 to exit, 1 to continue
  */
-int pr_split_commands(phiros_shell *dsh, char *input)
+int cj_split_commands(project_shell *dtsh, char *input)
 {
+    sep_list *hhs, *ll_s;
+    line_list *hhl, *ll_l;
+    int loop;
 
-	sep_list *h_s, *l_s;
-	line_list *h_l, *l_l;
-	int loop;
+    hhs = NULL;
+    hhl = NULL;
 
-	h_s = NULL;
-	h_l = NULL;
+    cj_add_nodes(&hhs, &hhl, input);
 
-	pr_add_nodes(&h_s, &h_l, input);
+    ll_s = hhs;
+    ll_l = hhl;
 
-	l_s = h_s;
-	l_l = h_l;
+    while (ll_l != NULL)
+    {
+        dtsh->input = ll_l->line;
+        dtsh->args = cj_split_line(dtsh->input);
+        loop = cj_exec_line(dtsh);
+        free(dtsh->args);
 
-	while (l_l != NULL)
-	{
-		dsh->input = l_l->line;
-		dsh->args = pr_split_line(dsh->input);
-		loop = pr_exec_line(dsh);
-		free(dsh->args);
+        if (loop == 0)
+            break;
 
-		if (loop == 0)
-			break;
+        cj_go_next(&ll_s, &ll_l, dtsh);
 
-		pr_go_next(&l_s, &l_l, dsh);
+        if (ll_l != NULL)
+            ll_l = ll_l->next;
+    }
 
-		if (l_l != NULL)
-			l_l = l_l->next;
-	}
+    cj_free_sep_list(&hhs);
+    cj_free_line_list(&hhl);
 
-	pr_free_sep_list(&h_s);
-	pr_free_line_list(&h_l);
-
-	if (loop == 0)
-		return (0);
-	return (1);
+    if (loop == 0)
+        return 0;
+    return 1;
 }
+
 /**
- * pr_split_line - tokenizes the input string
+ * cj_split_line - tokenizes the input string
  * @input: input string.
  * Return: string splitted.
  */
-char **pr_split_line(char *input)
+char **cj_split_line(char *input)
 {
-	size_t bs;
-	size_t u;
-	char **tokens;
-	char *token;
+    size_t b;
+    size_t z;
+    char **tokens;
+    char *token;
 
-	bs = TOK_BUFSIZE;
-	tokens = malloc(sizeof(char *) * (bs));
-	if (tokens == NULL)
-	{
-		write(STDERR_FILENO, ": allocation error\n", 18);
-		exit(EXIT_FAILURE);
-	}
+    b = TOK_BUFSIZE;
+    tokens = malloc(sizeof(char *) * b);
+    if (tokens == NULL)
+    {
+        write(STDERR_FILENO, ": allocation error\n", 18);
+        exit(EXIT_FAILURE);
+    }
 
-	token = pr_strtok(input, TOK_DELIM);
-	tokens[0] = token;
+    token = cj_strtok(input, TOK_DELIM);
+    tokens[0] = token;
 
-	for (u = 1; token != NULL; u++)
-	{
-		if (u == bs)
-		{
-			bs += TOK_BUFSIZE;
-			tokens = pr_reallocdp(tokens, u, sizeof(char *) * bs);
-			if (tokens == NULL)
-			{
-				write(STDERR_FILENO, ": allocation error\n", 18);
-				exit(EXIT_FAILURE);
-			}
-		}
-		token = pr_strtok(NULL, TOK_DELIM);
-		tokens[u] = token;
-	}
+    for (z = 1; token != NULL; z++)
+    {
+        if (z == b)
+        {
+            b += TOK_BUFSIZE;
+            tokens = cj_reallocdp(tokens, z, sizeof(char *) * b);
+            if (tokens == NULL)
+            {
+                write(STDERR_FILENO, ": allocation error\n", 18);
+                exit(EXIT_FAILURE);
+            }
+        }
+        token = cj_strtok(NULL, TOK_DELIM);
+        tokens[z] = token;
+    }
 
-	return (tokens);
+    return tokens;
 }
