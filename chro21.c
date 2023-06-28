@@ -1,39 +1,39 @@
-#include "phiros.h"
+#include "proshell.h"
 /**
- * pr_get_error - calls the error according the builtin, syntax or permission
- * @dsh: data structure that contains arguments
- * @eva: error value
+ * cj_get_error - calls the error according the builtin, syntax or permission
+ * @dtsh: data structure that contains arguments
+ * @ueval: error value
  * Return: error
  */
-int pr_get_error(phiros_shell *dsh, int eva)
+int cj_get_error(project_shell *dtsh, int ueval)
 {
-	char *e;
+	char *error;
 
-	switch (eva)
+	switch (ueval)
 	{
 	case -1:
-		e = e_e(dsh);
+		error = e_env(dtsh);
 		break;
 	case 126:
-		e = e_p_126(dsh);
+		error = e_path_126(dtsh);
 		break;
 	case 127:
-		e = e_n_f(dsh);
+		error = e_not_f(dtsh);
 		break;
 	case 2:
-		if (pr_strcmp("exit", dsh->args[0]) == 0)
-			e = e_e_s(dsh);
-		else if (pr_strcmp("cd", dsh->args[0]) == 0)
-			e = e_g_cd(dsh);
+		if (cj_strcmp("exit", dtsh->args[0]) == 0)
+			error = e_exit_s(dtsh);
+		else if (cj_strcmp("cd", dtsh->args[0]) == 0)
+			error = e_get_cd(dtsh);
 		break;
 	}
 
-	if (e)
+	if (error)
 	{
-		write(STDERR_FILENO, e, pr_strlen(e));
-		free(e);
+		write(STDERR_FILENO, error, cj_strlen(error));
+		free(error);
 	}
 
-	dsh->status = eva;
-	return (eva);
+	dtsh->status = ueval;
+	return (ueval);
 }
