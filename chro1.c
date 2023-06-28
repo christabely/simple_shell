@@ -1,138 +1,140 @@
-#include "phiros.h"
+#include "proshell.h"
 /**
- * pr_strcat_cd - concatenates the msg for cd error
- * @dsh: data relevant (directory)
+ * cj_strcat_cd - concatenates the msg for cd error
+ * @dtsh: data relevant (directory)
  * @msg: message to print
- * @e: output message
- * @v_s: counter lines
+ * @error: output message
+ * @ver_s: counter lines
  * Return: error message
- ****************************************************************/
-char *pr_strcat_cd(phiros_shell *dsh, char *msg, char *e, char *v_s)
+ **/
+char *cj_strcat_cd(project_shell *dtsh, char *msg, char *error, char *ver_s)
 {
-char *bad_flag;
+    char *dangerous_flag;
 
-pr_strcpy(e, dsh->av[0]);
-pr_strcat(e, ": ");
-pr_strcat(e, v_s);
-pr_strcat(e, ": ");
-pr_strcat(e, dsh->args[0]);
-pr_strcat(e, msg);
-if (dsh->args[1][0] == '-')
-{
-bad_flag = malloc(3);
-bad_flag[0] = '-';
-bad_flag[1] = dsh->args[1][1];
-bad_flag[2] = '\0';
-pr_strcat(e, bad_flag);
-free(bad_flag);
-}
-else
-{
-pr_strcat(e, dsh->args[1]);
+    cj_strcpy(error, dtsh->av[0]);
+    cj_strcat(error, ": ");
+    cj_strcat(error, ver_s);
+    cj_strcat(error, ": ");
+    cj_strcat(error, dtsh->args[0]);
+    cj_strcat(error, msg);
+    if (dtsh->args[1][0] == '-')
+    {
+        dangerous_flag = malloc(3);
+        dangerous_flag[0] = '-';
+        dangerous_flag[1] = dtsh->args[1][1];
+        dangerous_flag[2] = '\0';
+        cj_strcat(error, dangerous_flag);
+        free(dangerous_flag);
+    }
+    else
+    {
+        cj_strcat(error, dtsh->args[1]);
+    }
+
+    cj_strcat(error, "\n");
+    cj_strcat(error, "\0");
+    return (error);
 }
 
-pr_strcat(e, "\n");
-pr_strcat(e, "\0");
-return (e);
-}
 /**
- * e_g_cd - error message for cd command in get_cd
- * @dsh: data relevant (directory)
+ * e_get_cd - error message for cd command in cj_get_cd
+ * @dtsh: data relevant (directory)
  * Return: Error message
- *****************************************************************/
-char *e_g_cd(phiros_shell *dsh)
+ **/
+char *e_get_cd(project_shell *dtsh)
 {
-int lth, lth_id;
-char *e, *v_s, *msg;
+    int length, length_id;
+    char *error, *ver_s, *msg;
 
-v_s = pr_itoa(dsh->counter);
-if (dsh->args[1][0] == '-')
-{
-msg = ": Bad option ";
-lth_id = 2;
-}
-else
-{
-msg = ": cannot cd to ";
-lth_id = pr_strlen(dsh->args[1]);
-}
+    ver_s = cj_itoa(dtsh->counter);
+    if (dtsh->args[1][0] == '-')
+    {
+        msg = ": Dangerous option ";
+        length_id = 2;
+    }
+    else
+    {
+        msg = ": cannot cd to ";
+        length_id = cj_strlen(dtsh->args[1]);
+    }
 
-lth = pr_strlen(dsh->av[0]) + pr_strlen(dsh->args[0]);
-lth += pr_strlen(v_s) + pr_strlen(msg) + lth_id + 5;
-e = malloc(sizeof(char) * (lth + 1));
+    length = cj_strlen(dtsh->av[0]) + cj_strlen(dtsh->args[0]);
+    length += cj_strlen(ver_s) + cj_strlen(msg) + length_id + 5;
+    error = malloc(sizeof(char) * (length + 1));
 
-if (e == 0)
-{
-free(v_s);
-return (NULL);
-}
+    if (error == 0)
+    {
+        free(ver_s);
+        return (NULL);
+    }
 
-e = pr_strcat_cd(dsh, msg, e, v_s);
+    error = cj_strcat_cd(dtsh, msg, error, ver_s);
 
-free(v_s);
+    free(ver_s);
 
-return (e);
+    return (error);
 }
 /**
- * e_n_f - generic error message for command not found
- * @dsh: data relevant (counter, arguments)
+ * error_not_found - generic error message for command not found
+ * @dtsh: data relevant (counter, arguments)
  * Return: Error message
  */
-char *e_n_f(phiros_shell *dsh)
+char *error_not_found(project_shell *dtsh)
 {
-int lth;
-char *e;
-char *v_s;
+    int length;
+    char *error;
+    char *ver_s;
 
-v_s = pr_itoa(dsh->counter);
-lth = pr_strlen(dsh->av[0]) + pr_strlen(v_s);
-lth += pr_strlen(dsh->args[0]) + 16;
-e = malloc(sizeof(char) * (lth + 1));
-if (e == 0)
-{
-free(e);
-free(v_s);
-return (NULL);
-}
-pr_strcpy(e, dsh->av[0]);
-pr_strcat(e, ": ");
-pr_strcat(e, v_s);
-pr_strcat(e, ": ");
-pr_strcat(e, dsh->args[0]);
-pr_strcat(e, ": not found\n");
-pr_strcat(e, "\0");
-free(v_s);
-return (e);
+    ver_s = cj_itoa(dtsh->counter);
+    length = cj_strlen(dtsh->av[0]) + cj_strlen(ver_s);
+    length += cj_strlen(dtsh->args[0]) + 16;
+    error = malloc(sizeof(char) * (length + 1));
+    if (error == 0)
+    {
+        free(error);
+        free(ver_s);
+        return (NULL);
+    }
+    cj_strcpy(error, dtsh->av[0]);
+    cj_strcat(error, ": ");
+    cj_strcat(error, ver_s);
+    cj_strcat(error, ": ");
+    cj_strcat(error, dtsh->args[0]);
+    cj_strcat(error, ": not found\n");
+    cj_strcat(error, "\0");
+    free(ver_s);
+    return (error);
 }
 /**
- * e_e_s - generic error message for exit in get_exit
- * @dsh: data relevant (counter, arguments)
+ * error_exit_s - generic error message for exit in get_exit
+ * @dtsh: data relevant (counter, arguments)
  * Return: Error message
- ***********************************************************/
-char *e_e_s(phiros_shell *dsh)
+ **/
+char *error_exit_s(project_shell *dtsh)
 {
-int lth;
-char *e;
-char *v_s;
+    int length;
+    char *error;
+    char *ver_s;
 
-v_s = pr_itoa(dsh->counter);
-lth = pr_strlen(dsh->av[0]) + pr_strlen(v_s);
-lth += pr_strlen(dsh->args[0]) + pr_strlen(dsh->args[1]) + 23;
-e = malloc(sizeof(char) * (lth + 1));
-if (e == 0)
-{
-free(v_s);
-return (NULL);
-}
-pr_strcpy(e, dsh->av[0]);
-pr_strcat(e, ": ");
-pr_strcat(e, v_s);
-pr_strcat(e, ": ");
-pr_strcat(e, dsh->args[0]);
-pr_strcat(e, ": Bad number: ");
-pr_strcat(e, dsh->args[1]);
-pr_strcat(e, "\n\0");
-free(v_s);
+    ver_s = cj_itoa(dtsh->counter);
+    length = cj_strlen(dtsh->av[0]) + cj_strlen(ver_s);
+    length += cj_strlen(dtsh->args[0]) + cj_strlen(dtsh->args[1]) + 23;
+    error = malloc(sizeof(char) * (length + 1));
+    if (error == 0)
+    {
+        free(ver_s);
+        return (NULL);
+    }
+    cj_strcpy(error, dtsh->av[0]);
+    cj_strcat(error, ": ");
+    cj_strcat(error, ver_s);
+    cj_strcat(error, ": ");
+    cj_strcat(error, dtsh->args[0]);
+    cj_strcat(error, ": Dangerous number: ");
+    cj_strcat(error, dtsh->args[1]);
+    cj_strcat(error, "\n\0");
+    free(ver_s);
 
-return (e);
+    return (error);
 }
+
