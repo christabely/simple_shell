@@ -138,5 +138,3 @@ char *e_exit_s(project_shell *dtsh)
 
     return (erros);
 }
-
-}
