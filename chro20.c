@@ -7,8 +7,7 @@
  */
 int (*cj_get_builtin(char *cmd))(project_shell *)
 {
-builtin_t builtin[] =
-{
+builtin_t builtin[] = {
 { "env", cj_env },
 { "exit", cj_exit_shell },
 { "setenv", cj_setenv },
