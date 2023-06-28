@@ -1,30 +1,31 @@
-#include "phiros.h"
+#include "proshell.h"
 /**
- * pr_rev_string - reverses a string.
+ * cj_rev_string - reverses a string.
  * @s: input string.
  * Return: no return.
  */
-void pr_rev_string(char *s)
+void cj_rev_string(char *s)
 {
-int count = 0, m, n;
-char *string, temp;
+    int ct = 0, y, z;
+    char *str, tmp;
 
-for (count = 0; s[count] != '\0'; count++)
-{
-string = s;
+    for (ct = 0; s[ct] != '\0'; ct++)
+    {
+        str = s;
+    }
+
+    y = 0;
+    while (y < ct - 1)
+    {
+        z = y + 1;
+        while (z > 0)
+        {
+            tmp = *(str + z);
+            *(str + z) = *(str + (z - 1));
+            *(str + (z - 1)) = tmp;
+            z--;
+        }
+        y++;
+    }
 }
 
-m = 0;
-while (m < count - 1)
-{
-n = m + 1;
-while (n > 0)
-{
-temp = *(string + n);
-*(string + n) = *(string + (n - 1));
-*(string + (n - 1)) = temp;
-n--;
-}
-m++;
-}
-}
