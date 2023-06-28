@@ -1,11 +1,11 @@
 #include "proshell.h"
 
 /**
- * ax_get_help - function that retrieves help messages according builtin
+ * cj_get_help - function that retrieves help messages according builtin
  * @dtsh: data structure (args and input)
  * Return: Return 0
 */
-int ax_get_help(project_shell *dtsh)
+int cj_get_help(project_shell *dtsh)
 {
 
 	if (dtsh->args[1] == 0)
