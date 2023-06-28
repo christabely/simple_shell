@@ -6,12 +6,12 @@
  */
 void cj_cd_dot(project_shell *dtsh)
 {
-	char pwd[PATH_MAX];
-	char *d, *cp_pwd, *cp_strtok_pwd;
+char pwd[PATH_MAX];
+char *d, *cp_pwd, *cp_strtok_pwd;
 
-	getcwd(pwd, sizeof(pwd));
-	cp_pwd = cj_strdup(pwd);
-	cj_set_env("OLDPWD", cp_pwd, dtsh);
+getcwd(pwd, sizeof(pwd));
+cp_pwd = cj_strdup(pwd);
+cj_set_env("OLDPWD", cp_pwd, dtsh);
 	d = dtsh->args[1];
 	if (cj_strcmp(".", d) == 0)
 	{
@@ -127,30 +127,30 @@ void cj_cd_previous(project_shell *dtsh)
  */
 void cj_cd_to_home(project_shell *dtsh)
 {
-    char *p_pwd, *home;
-    char pwd[PATH_MAX];
+char *p_pwd, *home;
+char pwd[PATH_MAX];
 
-    getcwd(pwd, sizeof(pwd));
-    p_pwd = cj_strdup(pwd);
+getcwd(pwd, sizeof(pwd));
+p_pwd = cj_strdup(pwd);
 
-    home = cj_getenv("HOME", dtsh->_environ);
+home = cj_getenv("HOME", dtsh->_environ);
 
-    if (home == NULL)
-    {
-        cj_set_env("OLDPWD", p_pwd, dtsh);
-        free(p_pwd);
-        return;
-    }
+if (home == NULL)
+{
+cj_set_env("OLDPWD", p_pwd, dtsh);
+free(p_pwd);
+return;
+}
 
-    if (chdir(home) == -1)
-    {
-        cj_get_error(dtsh, 2);
-        free(p_pwd);
-        return;
-    }
+if (chdir(home) == -1)
+{
+cj_get_error(dtsh, 2);
+free(p_pwd);
+return;
+}
 
-    cj_set_env("OLDPWD", p_pwd, dtsh);
-    cj_set_env("PWD", home, dtsh);
-    free(p_pwd);
-    dtsh->status = 0;
+cj_set_env("OLDPWD", p_pwd, dtsh);
+cj_set_env("PWD", home, dtsh);
+free(p_pwd);
+dtsh->status = 0;
 }
