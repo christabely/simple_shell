@@ -1,28 +1,28 @@
-#include "phiros.h"
+#include "proshell.h"
 
 /**
- * pr_get_builtin - builtin that pais the command in the arg
+ * cj_get_builtin - builtin that pais the command in the arg
  * @cmd: command
  * Return: function pointer of the builtin command
  */
-int (*pr_get_builtin(char *cmd))(phiros_shell *)
+int (*cj_get_builtin(char *cmd))(project_shell *)
 {
 	builtin_t builtin[] = {
-		{ "env", pr_env },
-		{ "exit", pr_exit_shell },
-		{ "setenv", pr_setenv },
-		{ "unsetenv", pr_unsetenv },
-		{ "cd", pr_cd_shell },
-		{ "help", pr_get_help },
+		{ "env", cj_env },
+		{ "exit", cj_exit_shell },
+		{ "setenv", cj_setenv },
+		{ "unsetenv", cj_unsetenv },
+		{ "cd", cj_cd_shell },
+		{ "help", cj_get_help },
 		{ NULL, NULL }
 	};
-	int u;
+	int v;
 
-	for (u = 0; builtin[u].name; u++)
+	for (v = 0; builtin[v].name; v++)
 	{
-		if (pr_strcmp(builtin[u].name, cmd) == 0)
+		if (cj_strcmp(builtin[v].name, cmd) == 0)
 			break;
 	}
 
-	return (builtin[u].f);
+	return (builtin[v].f);
 }
