@@ -1,28 +1,30 @@
 #include "proshell.h"
 
 /**
- * cj_get_builtin - builtin that pais the command in the arg
- * @cmd: command
- * Return: function pointer of the builtin command
+ * cj_exit_shell - exits the shell
+ * @dsh: data relevant (status and args)
+ * Return: 0 on success.
  */
-int (*cj_get_builtin(char *cmd))(project_shell *)
+int cj_exit_shell(proshell_shell *dsh)
 {
-	builtin_t builtin[] = {
-		{ "env", cj_env },
-		{ "exit", cj_exit_shell },
-		{ "setenv", cj_setenv },
-		{ "unsetenv", cj_unsetenv },
-		{ "cd", cj_cd_shell },
-		{ "help", cj_get_help },
-		{ NULL, NULL }
-	};
-	int v;
+	unsigned int us;
+	int is_dig;
+	int strle_n;
+	int big_num;
 
-	for (v = 0; builtin[v].name; v++)
+	if (dsh->args[1] != NULL)
 	{
-		if (cj_strcmp(builtin[v].name, cmd) == 0)
-			break;
+		us = cj_atoi(dsh->args[1]);
+		is_dig = cj_isdigit(dsh->args[1]);
+		strle_n = cj_strlen(dsh->args[1]);
+		big_num = us > (unsigned int)INT_MAX;
+		if (!is_dig || strle_n > 10 || big_num)
+		{
+			cj_get_error(dsh, 2);
+			dsh->status = 2;
+			return (1);
+		}
+		dsh->status = (us % 256);
 	}
-
-	return (builtin[v].f);
+	return (0);
 }
