@@ -7,7 +7,7 @@
  * @v_s: counter lines
  * Return: error message
  ****************************************************************/
-char *cj_strcat_cd(phiros_shell *dtsh, char *msg, char *e, char *v_s)
+char *cj_strcat_cd(project_shell *dtsh, char *msg, char *e, char *v_s)
 {
     char *bad_flag;
 
@@ -40,8 +40,8 @@ char *cj_strcat_cd(phiros_shell *dtsh, char *msg, char *e, char *v_s)
  * e_get_cd - error message for cd command in get_cd
  * @dtsh: data relevant (directory)
  * Return: Error message
- *****************************************************************/
-char *e_get_cd(phiros_shell *dtsh)
+ **/
+char *e_get_cd(project_shell *dtsh)
 {
     int lth, lth_id;
     char *e, *v_s, *msg;
@@ -80,7 +80,7 @@ char *e_get_cd(phiros_shell *dtsh)
  * @dtsh: data relevant (counter, arguments)
  * Return: Error message
  */
-char *e_not_f(phiros_shell *dtsh)
+char *e_not_f(project_shell *dtsh)
 {
     int lth;
     char *e;
