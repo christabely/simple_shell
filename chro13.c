@@ -1,43 +1,43 @@
-#include "phiros.h"
-
+#include "proshell.h"
 /**
- * pr_cd_shell - changes current directory
- * @dsh: data relevant
+ * cj_cd_shell - changes current directory
+ * @dtsh: data relevant
  * Return: 1 on success
  */
-int pr_cd_shell(phiros_shell *dsh)
+int cj_cd_shell(project_shell *dtsh)
 {
 	char *d;
-	int ie, i2, ih;
+	int x, y, z;
 
-	d = dsh->args[1];
+	d = dtsh->args[1];
 
 	if (d != NULL)
 	{
-		ie = pr_strcmp("$HOME", d);
-		i2 = pr_strcmp("~", d);
-		ih = pr_strcmp("--", d);
+		x = cj_strcmp("$HOME", d);
+		y = cj_strcmp("~", d);
+		z = cj_strcmp("--", d);
 	}
 
-	if (d == NULL || !ie || !i2 || !ih)
+	if (d == NULL || !x || !y || !z)
 	{
-		pr_cd_to_home(dsh);
+		cj_cd_to_home(dtsh);
 		return (1);
 	}
 
-	if (pr_strcmp("-", d) == 0)
+	if (cj_strcmp("-", d) == 0)
 	{
-		pr_cd_previous(dsh);
+		cj_cd_previous(dtsh);
 		return (1);
 	}
 
-	if (pr_strcmp(".", d) == 0 || pr_strcmp("..", d) == 0)
+	if (cj_strcmp(".", d) == 0 || cj_strcmp("..", d) == 0)
 	{
-		pr_cd_dot(dsh);
+		cj_cd_dot(dtsh);
 		return (1);
 	}
 
-	pr_cd_dot(dsh);
+	cj_cd_dot(dtsh);
 
 	return (1);
 }
+
