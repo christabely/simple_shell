@@ -29,10 +29,10 @@ void ax_help_setenv(void)
 }
 
 /**
- * cj_help_unsetenv - Help info for builtin unsetenv.
+ * ax_help_unsetenv - Help info for builtin unsetenv.
  * Return: no return
  */
-void cj_help_unsetenv(void)
+void ax_help_unsetenv(void)
 {
 	char *help = "unsetenv: unsetenv (const char *name)\n\t";
 
