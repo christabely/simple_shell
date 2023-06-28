@@ -1,10 +1,10 @@
 #include "proshell.h"
 
 /**
- * cj_help_env - Help info for builtin env.
+ * ax_help_env - Help info for builtin env.
  * Return: no return
  */
-void cj_help_env(void)
+void ax_help_env(void)
 {
 	char *help = "env: env [option] [name=value] [command [args]]\n\t";
 
@@ -14,10 +14,10 @@ void cj_help_env(void)
 }
 
 /**
- * cj_help_setenv - Help info for builtin setenv.
+ * ax_help_setenv - Help info for builtin setenv.
  * Return: no return
  */
-void cj_help_setenv(void)
+void ax_help_setenv(void)
 {
 	char *help = "setenv: setenv (const char *name, const char *value, ";
 
@@ -42,10 +42,10 @@ void cj_help_unsetenv(void)
 }
 
 /**
- * cj_help_general - Entry point for help info for help builtin.
+ * ax_help_general - Entry point for help info for help builtin.
  * Return: no return
  */
-void cj_help_general(void)
+void ax_help_general(void)
 {
 	char *help = "^-^ bash, version 1.0(1)-release\n";
 
@@ -65,10 +65,10 @@ void cj_help_general(void)
 }
 
 /**
- * cj_help_exit - Help info for builtin exit.
+ * ax_help_exit - Help info for builtin exit.
  * Return: no return
  */
-void cj_help_exit(void)
+void ax_help_exit(void)
 {
 	char *help = "exit: exit [n]\n Exit shell.\n";
 
