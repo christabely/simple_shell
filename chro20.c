@@ -5,7 +5,7 @@
  * @dsh: data relevant (status and args)
  * Return: 0 on success.
  */
-int cj_exit_shell(proshell_shell *dsh)
+int cj_exit_shell(project_shell *dsh)
 {
 	unsigned int us;
 	int is_dig;
