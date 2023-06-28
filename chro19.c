@@ -14,9 +14,9 @@ int cj_exit_shell(project_shell *dtsh)
 
 	if (dtsh->args[1] != NULL)
 	{
-		u = cj_atoi(dsh->args[1]);
-		_dig = cj_isdigit(dsh->args[1]);
-		strlen_n = cj_strlen(dsh->args[1]);
+		u = cj_atoi(dtsh->args[1]);
+		_dig = cj_isdigit(dtsh->args[1]);
+		strlen_n = cj_strlen(dtsh->args[1]);
 		big_number = u > (unsigned int)INT_MAX;
 		if (!_dig || strlen_n > 10 || big_number)
 		{
