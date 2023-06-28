@@ -1,30 +1,30 @@
 #include "proshell.h"
 /**
- * f_data - frees data struct
- * @dsh: data struct
+ * freee_data - frees data struct
+ * @dtsh: data struct
  * Return: no return
  **********************************/
-void f_data(phiros_shell *dsh)
+void freee_data(project_shell *dtsh)
 {
-unsigned int u = 0;
-while (dsh->_environ[u])
+unsigned int w = 0;
+while (dtsh->_environ[w])
 {
-free(dsh->_environ[u]);
-u++;
+free(dtsh->_environ[w]);
+w++;
 }
 
-free(dsh->_environ);
-free(dsh->pid);
+free(dtsh->_environ);
+free(dtsh->pid);
 }
 /**
- * s_data - Initialize data struct
- * @dsh: data struct
+ * sett_data- Initialize data struct
+ * @dtsh: data struct
  * @av: arg vector
  * Return: no return
  **********************************/
-void s_data(phiros_shell *dsh, char **av)
+void sett_data(project_shell *dtsh, char **av)
 {
-unsigned int u = 0;
+unsigned int w = 0;
 
 dsh->av = av;
 dsh->input = NULL;
@@ -32,18 +32,18 @@ dsh->args = NULL;
 dsh->status = 0;
 dsh->counter = 1;
 
-for (u = 0; environ[u]; u++)
+for (w = 0; environ[w]; w++)
 ;
 
-dsh->_environ = malloc(sizeof(char *) * (u + 1));
+dtsh->_environ = malloc(sizeof(char *) * (w + 1));
 
-for (u = 0; environ[u]; u++)
+for (w = 0; environ[w]; w++)
 {
-dsh->_environ[u] = pr_strdup(environ[u]);
+dtsh->_environ[w] = cj_strdup(environ[w]);
 }
 
-dsh->_environ[u] = NULL;
-dsh->pid = pr_itoa(getpid());
+dtsh->_environ[w] = NULL;
+dtsh->pid = cj_itoa(getpid());
 }
 /**
  * main - Entry point
@@ -53,14 +53,14 @@ dsh->pid = pr_itoa(getpid());
  */
 int main(int ac, char **av)
 {
-	phiros_shell dsh;
+	project_shell dtsh;
 	(void) ac;
 
-	signal(SIGINT, pr_get_sigint);
-	s_data(&dsh, av);
-	s_loop(&dsh);
-	f_data(&dsh);
-	if (dsh.status < 0)
+	signal(SIGINT, cj_get_sigint);
+	sett_data(&dtsh, av);
+	christy_s_loop(&dtsh);
+	freee_data(&dtsh);
+	if (dtsh.status < 0)
 		return (255);
-	return (dsh.status);
+	return (dtsh.status);
 }
