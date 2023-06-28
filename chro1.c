@@ -126,5 +126,4 @@ char *e_exit_s(project_shell *dtsh)
         free(v_s);
         return (NULL);
     }
-   
-
+}
