@@ -21,7 +21,7 @@ extern char **environ;
 
 
 /**
- * struct phiros_shell - struct that contains all relevant data on runtime
+ * struct data - struct that contains all relevant data on runtime
  * @av: argument vector
  * @input: command line written by the user
  * @args: tokens of the command line
@@ -89,7 +89,7 @@ typedef struct r_var_list
 typedef struct builtin_s
 {
 	char *name;
-	int (*f)(phiros_shell *dsh);
+	int (*f)(project_shell *dtsh);
 } builtin_t;
 
 char *cj_strcat_cd(project_shell *dtsh, char *msg, char *error, char *ver_s);
