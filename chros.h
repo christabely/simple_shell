@@ -1,5 +1,5 @@
-#ifndef _PHIROS_H_
-#define _PHIROS_H_
+#ifndef _PROSHELL_H_
+#define _PROSHELL_H_
 
 #include <stdio.h>
 #include <unistd.h>
@@ -39,7 +39,7 @@ typedef struct data
 	int counter;
 	char **_environ;
 	char *pid;
-} phiros_shell;
+} project_shell;
 
 /**
  * struct sep_list_s - single linked list
@@ -92,138 +92,84 @@ typedef struct builtin_s
 	int (*f)(phiros_shell *dsh);
 } builtin_t;
 
-/* phiros1.c */
-char *pr_strcat_cd(phiros_shell *dsh, char *msg, char *e, char *v_s);
-char *e_g_cd(phiros_shell *dsh);
-char *e_n_f(phiros_shell *dsh);
-char *e_e_s(phiros_shell *dsh);
-
-/* phiros10.c */
-char *pr_strdup(const char *s);
-int pr_strlen(const char *s);
+char *cj_strcat_cd(project_shell *dtsh, char *msg, char *error, char *ver_s);
+char *e_get_cd(project_shell *dtsh);
+char *error_not_found(project_shell *dtsh);
+char *error_exit_s(project_shell *dtsh);
+char *cj_strdup(const char *s);
+int cj_strlen(const char *s);
 int compare_chars(char string[], const char *delim);
-char *pr_strtok(char string[], const char *delim);
-int pr_isdigit(const char *s);
-
-/* phiros11.c */
-void pr_rev_string(char *s);
-
-/* phiros12.c */
-void pr_cd_dot(phiros_shell *dsh);
-void pr_cd_to(phiros_shell *dsh);
-void pr_cd_previous(phiros_shell *dsh);
-void pr_cd_to_home(phiros_shell *dsh);
-
-/* phiros13.c */
-int pr_cd_shell(phiros_shell *dsh);
-
-/* phiros14.c */
-int repeat_char(char *input, int u);
-int pr_e_s_p(char *input, int u, char last);
-int pr_first_char(char *input, int *u);
-void p_s_e(phiros_shell *dsh, char *input, int u, int bool);
-int c_s_e(phiros_shell *dsh, char *input);
-
-/* phiros18.c */
-int pr_exec_line(phiros_shell *dsh);
-
-/* phiros19.c */
-int pr_exit_shell(phiros_shell *dsh);
-
-/* phiros20.c */
-int (*pr_get_builtin(char *cmd))(phiros_shell *);
-
-/* phiros21.c */
-int pr_get_error(phiros_shell *dsh, int eva);
-
-/* phiros22.c */
-int pr_get_help(phiros_shell *dsh);
-
-/* phiros23.c */
-void pr_bring_line(char **lptr, size_t *i, char *buffer, size_t k);
-ssize_t pr_get_line(char **lptr, size_t *i, FILE *stream);
-
-/* phiros24.c */
-void pr_get_sigint(int sig);
-char *pr_read_line(int *iff);
-
-/* phiros26.c */
-char *pr_without_comment(char *in);
-void s_loop(phiros_shell *dsh);
-
-/* phiros27.c */
-char *pr_swap_char(char *input, int bool);
-void pr_add_nodes(sep_list **hs, line_list **hl, char *input);
-void pr_go_next(sep_list **l_s, line_list **l_l, phiros_shell *dsh);
-int pr_split_commands(phiros_shell *dsh, char *input);
-char **pr_split_line(char *input);
-
-/* phiros3.c */
-void a_help_env(void);
-void a_help_setenv(void);
-void a_help_unsetenv(void);
-void a_help_general(void);
-void a_help_exit(void);
-
-/* phiros4.c */
-void a_help(void);
-void a_help_alias(void);
-void a_help_cd(void);
-
-/* phiros5.c */
-sep_list *pr_add_sep_node_end(sep_list **head, char sep);
-void pr_free_sep_list(sep_list **head);
-line_list *pr_add_line_node_end(line_list **head, char *line);
-void pr_free_line_list(line_list **head);
-
-/* phiros6.c */
-r_var *pr_add_rvar_node(r_var **head, int lvar, char *val, int lval);
-void pr_free_rvar_list(r_var **head);
-
-/* phiros7.h */
-void _memcpy(void *newptr, const void *ptr, unsigned int size);
-void *pr_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
-char **pr_reallocdp(char **ptr, unsigned int old_size, unsigned int new_size);
-
-/* phiros8.c */
-int pr_get_len(int n);
-char *pr_itoa(int n);
-int pr_atoi(char *s);
-
-/* phiros9.c */
-char *pr_strcat(char *dest, const char *src);
-char *pr_strcpy(char *dest, char *src);
-int pr_strcmp(char *s1, char *s2);
-char *pr_strchr(char *s, char c);
-int pr_strspn(char *s, char *accept);
-
-/* phiros25.c */
-void pr_check_env(r_var **h, char *in, phiros_shell *data);
-int pr_check_vars(r_var **h, char *in, char *st, phiros_shell *data);
-char *replace_input(r_var **head, char *input, char *new_input, int nlen);
-char *rep_variable(char *input, phiros_shell *dsh);
-
-/* phiros17.c */
-char *pr_copy_info(char *name, char *value);
-void pr_set_env(char *name, char *value, phiros_shell *dsh);
-int pr_setenv(phiros_shell *dsh);
-int pr_unsetenv(phiros_shell *dsh);
-
-/* phiros16.c */
-int pr_cmp_env_name(const char *nenv, const char *name);
-char *pr_getenv(const char *name, char **_environ);
-int pr_env(phiros_shell *dsh);
-
-/* phiros15.c */
-int pr_is_cdir(char *path, int *m);
-char *pr_which(char *cmd, char **_environ);
-int pr_is_executable(phiros_shell *dsh);
-int pr_check_error_cmd(char *d, phiros_shell *dsh);
-int pr_cmd_exec(phiros_shell *dsh);
-
-/* phiros2.c */
-char *e_e(phiros_shell *dsh);
-char *e_p_126(phiros_shell *dsh);
-
+char *cj_strtok(char string[], const char *delim);
+int cj_isdigit(const char *s);
+void cj_rev_string(char *s);
+void cj_cd_dot(project_shell *dtsh);
+void cj_cd_to(project_shell *dtsh);
+void cj_cd_previous(project_shell *dtsh);
+void cj_cd_to_home(project_shell *dtsh);
+int cj_cd_shell(project_shell *dtsh);
+int repeat_chars(char *input, int z);
+int cj_e_s_p(char *input, int z, char lt);
+int cj_first_char(char *input, int *z);
+void p_x_e(project_shell *dtsh, char *input, int z, int bool);
+int c_x_e(project_shell *dtsh, char *input);
+int cj_exec_line(project_shell *dtsh);
+int cj_exit_shell(project_shell *dtsh);
+int (*cj_get_builtin(char *cmd))(project_shell *);
+int cj_get_error(project_shell *dtsh, int ueval);
+int cj_get_help(project_shell *dtsh);
+void cj_bring_line(char **lptr, size_t *i, char *buffer, size_t k);
+ssize_t cj_get_line(char **lptr, size_t *i, FILE *stream);
+void cj_get_sigint(int sig);
+char *cj_read_line(int *iff);
+char *cj_without_comment(char *in);
+void sett_loop(project_shell *dsh);
+char *cj_swap_char(char *input, int bool);
+void cj_add_nodes(sep_list **hs, line_list **hl, char *input);
+void cj_go_next(sep_list **l_s, line_list **l_l, project_shell *dtsh);
+int cj_split_commands(project_shell *dtsh, char *input);
+char **cj_split_line(char *input);
+void ax_help_env(void);
+void ax_help_setenv(void);
+void ax_help_unsetenv(void);
+void ax_help_general(void);
+void ax_help_exit(void);
+void ax_help(void);
+void ax_help_alias(void);
+void ax_help_cd(void);
+sep_list *cj_add_sep_node_end(sep_list **head, char sep);
+void cj_free_sep_list(sep_list **head);
+line_list *cj_add_line_node_end(line_list **head, char *line);
+void cj_free_line_list(line_list **head);
+r_var *cj_add_rvar_node(r_var **head, int lvar, char *val, int lval);
+void cj_free_rvar_list(r_var **head);
+void cj_memcpy(void *newptr, const void *ptr, unsigned int size);
+void *cj_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+char **cj_reallocdp(char **ptr, unsigned int old_size, unsigned int new_size);
+int cj_get_len(int n);
+char *cj_itoa(int n);
+int cj_atoi(char *s);
+char *cj_strcat(char *dest, const char *src);
+char *cj_strcpy(char *dest, char *src);
+int cj_strcmp(char *s1, char *s2);
+char *cj_strchr(char *s, char c);
+int cj_strspn(char *s, char *accept);
+void cj_check_env(r_var **h, char *in, project_shell *data);
+int cj_check_vars(r_var **h, char *in, char *st, project_shell *data);
+char *replace_inputs(r_var **head, char *input, char *new_input, int nlen);
+char *rep_vari(char *input, project_shell *dtsh);
+char *cj_copy_info(char *name, char *value);
+void cj_set_env(char *name, char *value, project_shell *dtsh);
+int cj_setenv(project_shell *dtsh);
+int cj_unsetenv(project_shell *dtsh);
+int cj_cmp_env_name(const char *nenv, const char *name);
+char *cj_getenv(const char *name, char **_environ);
+int cj_env(project_shell *dtsh);
+int cj_is_cdir(char *path, int *n);
+char *cj_which(char *cmd, char **_environ);
+int cj_is_executable(project_shell *dtsh);
+int cj_check_error_cmd(char *d, project_shell *dtsh);
+int cj_cmd_exec(project_shell *dtsh);
+char *e_env(project_shell *dtsh);
+char *e_path_126(project_shell *dtsh);
 
 #endif
