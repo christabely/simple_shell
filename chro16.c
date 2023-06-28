@@ -37,7 +37,7 @@ char *cj_getenv(const char *name, char **_environ)
 
 	for (z = 0; _environ[z]; z++)
 	{
-		mov = pr_cmp_env_name(_environ[z], name);
+		mov = cj_cmp_env_name(_environ[z], name);
 		if (mov)
 		{
 			ptr_env = _environ[z];
@@ -62,7 +62,7 @@ int cj_env(project_shell *dtsh)
 		for (b = 0; dtsh->_environ[a][b]; b++)
 			;
 
-		write(STDOUT_FILENO, dtsh->_environ[g], b);
+		write(STDOUT_FILENO, dtsh->_environ[a], b);
 		write(STDOUT_FILENO, "\n", 1);
 	}
 	dtsh->status = 0;
