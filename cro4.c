@@ -1,4 +1,4 @@
-i#include "proshell.h"
+#include "proshell.h"
 
 /**
  * cj_help - Help info for builtin help.
