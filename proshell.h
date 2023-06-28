@@ -122,7 +122,7 @@ ssize_t cj_get_line(char **lptr, size_t *i, FILE *stream);
 void cj_get_sigint(int sig);
 char *cj_read_line(int *iff);
 char *cj_without_comment(char *in);
-void christy_s_loop(project_shell *dsh)(project_shell *dsh);
+void christy_s_loop(project_shell *dsh);
 char *cj_swap_char(char *input, int bool);
 void cj_add_nodes(sep_list **hs, line_list **hl, char *input);
 void cj_go_next(sep_list **l_s, line_list **l_l, project_shell *dtsh);
