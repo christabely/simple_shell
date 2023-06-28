@@ -40,5 +40,3 @@ void cj_help_cd(void)
 	help = "\tChange the shell working directory.\n ";
 	write(STDOUT_FILENO, help, cj_strlen(help));
 }
-
-// Rest of the code...
