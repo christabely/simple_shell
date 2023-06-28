@@ -1,46 +1,46 @@
-#include "phiros.h"
+#include "proshell.h"
 /**
- * pr_cmp_env_name - compares env variables names
+ * cj_cmp_env_name - compares env variables names
  * with the name passed.
  * @nenv: name of the environment variable
  * @name: name passed
  * Return: 0 if are not equal. Another value if they are.
  */
-int pr_cmp_env_name(const char *nenv, const char *name)
+int cj_cmp_env_name(const char *nenv, const char *name)
 {
-	int m;
+	int k;
 
-	for (m = 0; nenv[m] != '='; m++)
+	for (k = 0; nenv[k] != '='; k++)
 	{
-		if (nenv[m] != name[m])
+		if (nenv[k] != name[k])
 		{
 			return (0);
 		}
 	}
 
-	return (m + 1);
+	return (k + 1);
 }
 /**
- * pr_getenv - get an environment variable
+ * cj_getenv - get an environment variable
  * @name: name of the environment variable
  * @_environ: environment variable
  * Return: value of the environment variable if is found.
  * In other case, returns NULL.
  */
-char *pr_getenv(const char *name, char **_environ)
+char *cj_getenv(const char *name, char **_environ)
 {
 	char *ptr_env;
-	int n, mov;
+	int z, mov;
 
 	ptr_env = NULL;
 	mov = 0;
 
-	for (n = 0; _environ[n]; n++)
+	for (z = 0; _environ[z]; z++)
 	{
-		mov = pr_cmp_env_name(_environ[n], name);
+		mov = pr_cmp_env_name(_environ[z], name);
 		if (mov)
 		{
-			ptr_env = _environ[n];
+			ptr_env = _environ[z];
 			break;
 		}
 	}
@@ -48,24 +48,24 @@ char *pr_getenv(const char *name, char **_environ)
 	return (ptr_env + mov);
 }
 /**
- * pr_env - prints the evironment variables
- * @dsh: data relevant.
+ * cj_env - prints the evironment variables
+ * @dtsh: data relevant.
  * Return: 1 on success.
  */
-int pr_env(phiros_shell *dsh)
+int cj_env(project_shell *dtsh)
 {
-	int g, h;
+	int a, b;
 
-	for (g = 0; dsh->_environ[g]; g++)
+	for (a = 0; dtsh->_environ[a]; a++)
 	{
 
-		for (h = 0; dsh->_environ[g][h]; h++)
+		for (b = 0; dtsh->_environ[a][b]; b++)
 			;
 
-		write(STDOUT_FILENO, dsh->_environ[g], h);
+		write(STDOUT_FILENO, dtsh->_environ[g], b);
 		write(STDOUT_FILENO, "\n", 1);
 	}
-	dsh->status = 0;
+	dtsh->status = 0;
 
 	return (1);
 }
