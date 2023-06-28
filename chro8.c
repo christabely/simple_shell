@@ -1,7 +1,6 @@
 #include "proshell.h"
-
 /**
- * cj_get_len - Get the length of the number.
+ * cj_get_len - function that gets the length of the number.
  * @n: the type int number.
  * Return: the length of the number.
  */
@@ -27,9 +26,8 @@ int cj_get_len(int n)
 
 	return (lght);
 }
-
 /**
- * cj_itoa - function changes int to string.
+ * cj_itoa - function that changes int to string.
  * @n: the type int number
  * Return: a String.
  */
@@ -64,9 +62,8 @@ char *cj_itoa(int n)
 
 	return (buffer);
 }
-
 /**
- * cj_atoi - changes a string to an integer.
+ * cj_atoi - function that changes a string to an integer.
  * @s: the input string.
  * Return: an integer.
  */

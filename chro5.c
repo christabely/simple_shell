@@ -1,11 +1,9 @@
 #include "proshell.h"
-
 /**
- * cj_add_sep_node_end - add up a separator found
- * at the end of a sep_list.
+ * cj_add_sep_node_end - function that add up a separator.
  * @head: head of linked list.
- * @sep: separator found (; | &).
- * Return: address of the head.
+ * @sep: found separator (; | &).
+ * Return: head
  */
 sep_list *cj_add_sep_node_end(sep_list **head, char sep)
 {
@@ -32,11 +30,10 @@ sep_list *cj_add_sep_node_end(sep_list **head, char sep)
 
 	return (*head);
 }
-
 /**
- * cj_free_sep_list - frees up the sep_list
+ * cj_free_sep_list - function thst frees up the sep_list
  * @head: head of linked list.
- * Return: no return.
+ * Return: NULL
  */
 void cj_free_sep_list(sep_list **head)
 {
@@ -54,13 +51,11 @@ void cj_free_sep_list(sep_list **head)
 		*head = NULL;
 	}
 }
-
 /**
- * cj_add_line_node_end - add up a command line
- * at the end of a line_list.
+ * cj_add_line_node_end - function that adds up a command line
  * @head: head of linked list.
  * @line: a command line.
- * Return: the address of the head.
+ * Return: head
  */
 line_list *cj_add_line_node_end(line_list **head, char *line)
 {
@@ -87,11 +82,10 @@ line_list *cj_add_line_node_end(line_list **head, char *line)
 
 	return (*head);
 }
-
 /**
- * cj_free_line_list - frees up a line_list
+ * cj_free_line_list - function that frees up a line_list
  * @head: head of linked list.
- * Return: no return.
+ * Return: NULL
  */
 void cj_free_line_list(line_list **head)
 {

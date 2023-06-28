@@ -1,10 +1,9 @@
 #include "proshell.h"
-
 /**
- * repeat_chars - counts the repetitions of a char
- * @input: input string
- * @z: index
- * Return: repetitions
+ * repeat_chars - counts the number of times a char is repeated.
+ * @input: string for input
+ * @z: indextation
+ * Return: number if reapeated chars
  */
 int repeat_chars(char *input, int z)
 {
@@ -14,11 +13,11 @@ int repeat_chars(char *input, int z)
 	return (z);
 }
 /**
- * cj_e_s_p - finds syntax errors
- * @input: input string
- * @z: index
- * @lt: last char read
- * Return: index of error. 0 when there are no errors
+ * cj_e_s_p - function that locates syntax errors
+ * @input: input string iput
+ * @z: indextation
+ * @lt: last character read
+ * Return: error index or 0 when no errors
  */
 int cj_e_s_p(char *input, int z, char lt)
 {
@@ -28,6 +27,7 @@ int cj_e_s_p(char *input, int z, char lt)
 	if (*input == '\0')
 		return (0);
 
+	/* if loop for 1st argument */
 	if (*input == ' ' || *input == '\t')
 		return (cj_e_s_p(input + 1, z + 1, lt));
 
@@ -63,12 +63,11 @@ int cj_e_s_p(char *input, int z, char lt)
 
 	return (cj_e_s_p(input + 1, z + 1, *input));
 }
-
 /**
  * cj_first_char - finds index of the first char
  * @input: input string
  * @z: index
- * Return: 1 if there is an error. 0 in other case.
+ * Return: 1 if error, else 0
  */
 int cj_first_char(char *input, int *z)
 {
@@ -85,14 +84,13 @@ int cj_first_char(char *input, int *z)
 
 	return (0);
 }
-
 /**
- * p_x_e - prints when a syntax error is found
+ * p_x_e - function that prints when a syntax error is found
  * @dtsh: data structure
- * @input: input string
- * @z: index of the error
- * @bool: to control msg error
- * Return: no return
+ * @input: input string input
+ * @z: indextation of the error nsgs
+ * @bool: functio to control msg error
+ * Return: NULL
  */
 void p_x_e(project_shell *dtsh, char *input, int z, int bool)
 {
@@ -167,4 +165,3 @@ int c_x_e(project_shell *dtsh, char *input)
 
 	return (0);
 }
-

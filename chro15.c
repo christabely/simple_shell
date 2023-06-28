@@ -1,9 +1,9 @@
 #include "proshell.h"
 /**
- * cj_is_cdir - checks ":" if is in the current directory.
- * @path: type char pointer char.
- * @n: type int pointer of index.
- * Return: 1 if the path is searchable in the cd, 0 otherwise.
+ * cj_is_cdir - function that checks for seperators ":" in the current working directory.
+ * @path: pointer
+ * @n: int pointer
+ * Return: 1 for path else 0
  */
 int cj_is_cdir(char *path, int *n)
 {
@@ -20,12 +20,11 @@ int cj_is_cdir(char *path, int *n)
 
 	return (0);
 }
-
 /**
- * cj_which - locates a command
- * @cmd: command name
+ * cj_which - function that locates a command
+ * @cmd: command or name of command
  * @_environ: environment variable
- * Return: location of the command.
+ * Return: command location
  */
 char *cj_which(char *cmd, char **_environ)
 {
@@ -59,6 +58,7 @@ char *cj_which(char *cmd, char **_environ)
 			free(dr);
 			token_path = cj_strtok(NULL, ":");
 		}
+		/*this frees tge pointer */
 		free(ptr_path);
 		if (stat(cmd, &st) == 0)
 			return (cmd);
@@ -69,11 +69,10 @@ char *cj_which(char *cmd, char **_environ)
 			return (cmd);
 	return (NULL);
 }
-
 /**
- * cj_is_executable - determines if is an executable
+ * cj_is_executable - function that determines if variable is an executable
  * @dtsh: data structure
- * Return: 0 if is not an executable, other number if it does
+ * Return: integer
  */
 int cj_is_executable(project_shell *dtsh)
 {
@@ -102,6 +101,7 @@ int cj_is_executable(project_shell *dtsh)
 		}
 		else
 			break;
+	/* reflecting data arguments*/
 	}
 	if (a == 0)
 		return (0);
@@ -113,12 +113,11 @@ int cj_is_executable(project_shell *dtsh)
 	cj_get_error(dtsh, 127);
 	return (-1);
 }
-
 /**
- * cj_check_error_cmd - verifies if user has permissions to access
- * @d: destination directory
+ * cj_check_error_cmd - function that verifies if user has permissions to accesss drectory.
+ * @d: destination path of  directory
  * @dtsh: data structure
- * Return: 1 if there is an error, 0 if not
+ * Return: 1 if error, else 0
  */
 int cj_check_error_cmd(char *d, project_shell *dtsh)
 {
@@ -146,13 +145,11 @@ int cj_check_error_cmd(char *d, project_shell *dtsh)
 			return (1);
 		}
 	}
-
 	return (0);
 }
-
 /**
- * cj_cmd_exec - executes command lines
- * @dtsh: data relevant
+ * cj_cmd_exec - function that executes command lines
+ * @dtsh: data
  * Return: 1 on success.
  */
 int cj_cmd_exec(project_shell *dtsh)

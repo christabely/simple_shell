@@ -1,11 +1,10 @@
 #include "proshell.h"
-
 /**
- * cj_check_env - checks if the typed variable is an env variable
+ * cj_check_env - function;that checks if the typed variable is an env variable
  * @hd: head of linked list
- * @in: input string
+ * @in: input string input
  * @data: data structure
- * Return: no return
+ * Return: NULL
  */
 void cj_check_env(r_var **hd, char *in, project_shell *data)
 {
@@ -39,14 +38,13 @@ void cj_check_env(r_var **hd, char *in, project_shell *data)
 
 	cj_add_rvar_node(hd, e, NULL, 0);
 }
-
 /**
- * cj_check_vars - check if the typed variable is $$ or $?
+ * cj_check_vars - function thst check if the typed variable is $$ or $?
  * @hd: head of the linked list
- * @in: input string
- * @st: last status of the Shell
+ * @in: input string input
+ * @st: Shell last status
  * @data: data structure
- * Return: no return
+ * Return: NULL
  */
 int cj_check_vars(r_var **hd, char *in, char *st, project_shell *data)
 {
@@ -80,14 +78,13 @@ int cj_check_vars(r_var **hd, char *in, char *st, project_shell *data)
 
 	return (e);
 }
-
 /**
- * replace_inputs - replaces string into variables
+ * replace_inputs - function thst replaces string into variables
  * @head: head of the linked list
- * @input: input string
- * @new_input: new input string (replaced)
+ * @input: input string inut
+ * @new_input: new input string
  * @nlen: new length
- * Return: replaced string
+ * Return: the replaced string
  */
 char *replace_inputs(r_var **head, char *input, char *new_input, int nlen)
 {
@@ -132,12 +129,11 @@ char *replace_inputs(r_var **head, char *input, char *new_input, int nlen)
 
 	return (new_input);
 }
-
 /**
- * rep_vari - calls functions to replace string into vars
- * @input: input string
- * @dtsh: data structure
- * Return: replaced string
+ * rep_vari - function that calls functions to replace string with vars
+ * @input: input string input
+ * @dtsh: data struct
+ * Return: the replaced string
  */
 char *rep_vari(char *input, project_shell *dtsh)
 {
@@ -178,4 +174,3 @@ char *rep_vari(char *input, project_shell *dtsh)
 
 	return (new_input);
 }
-

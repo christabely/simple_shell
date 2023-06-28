@@ -1,13 +1,11 @@
 #include "proshell.h"
-
 /**
- * cj_add_rvar_node - add up a variable
- * at the end of an r_var list.
+ * cj_add_rvar_node - function that add up a variable
  * @head: head of linked list.
- * @lvar: the length of the variable.
- * @val: the value of the variable.
- * @lval: the length of the value.
- * Return: the address of the head.
+ * @lvar: variable length
+ * @val: variable value
+ * @lval: length of the value.
+ * Return: head.
  */
 r_var *cj_add_rvar_node(r_var **head, int lvar, char *val, int lval)
 {
@@ -37,11 +35,10 @@ r_var *cj_add_rvar_node(r_var **head, int lvar, char *val, int lval)
 
 	return (*head);
 }
-
 /**
- * cj_free_rvar_list - frees up an r_var list
+ * cj_free_rvar_list - function that frees up an r_var list
  * @head: head of linked list.
- * Return: no return.
+ * Return: NULL
  */
 void cj_free_rvar_list(r_var **head)
 {

@@ -1,8 +1,7 @@
 #include "proshell.h"
-
 /**
- * cj_exit_shell - exits the shell
- * @dtsh: data relevant
+ * cj_exit_shell - function that makes it possible to;exits the shell
+ * @dtsh: data
  * Return: 0 on success.
  */
 int cj_exit_shell(project_shell *dtsh)

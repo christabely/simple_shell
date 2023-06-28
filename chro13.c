@@ -1,7 +1,7 @@
 #include "proshell.h"
 /**
- * cj_cd_shell - changes current directory
- * @dtsh: data relevant
+ * cj_cd_shell - changes current directory to a different directory
+ * @dtsh: data
  * Return: 1 on success
  */
 int cj_cd_shell(project_shell *dtsh)
@@ -18,6 +18,7 @@ int cj_cd_shell(project_shell *dtsh)
 		z = cj_strcmp("--", d);
 	}
 
+	/* second if loop */
 	if (d == NULL || !x || !y || !z)
 	{
 		cj_cd_to_home(dtsh);
@@ -30,12 +31,14 @@ int cj_cd_shell(project_shell *dtsh)
 		return (1);
 	}
 
+	/* final if loop;arguments */
 	if (cj_strcmp(".", d) == 0 || cj_strcmp("..", d) == 0)
 	{
 		cj_cd_dot(dtsh);
 		return (1);
 	}
 
+	/* infomation arguments */
 	cj_cd_dot(dtsh);
 
 	return (1);

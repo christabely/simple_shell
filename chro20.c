@@ -1,8 +1,7 @@
 #include "proshell.h"
-
 /**
- * cj_get_builtin - builtin that pais the command in the arg
- * @cmd: command
+ * cj_get_builtin - function of builtin
+ * @cmd: command argss
  * Return: function pointer of the builtin command
  */
 int (*cj_get_builtin(char *cmd))(project_shell *)

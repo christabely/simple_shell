@@ -1,9 +1,8 @@
 #include "proshell.h"
-
 /**
- * cj_strdup - duplicates a str in the heap memory.
+ * cj_strdup - function that duplicates a str in the heap memory.
  * @s: Type char pointer str
- * Return: duplicated str
+ * Return: the duplicated str
  */
 char *cj_strdup(const char *s)
 {
@@ -17,11 +16,10 @@ char *cj_strdup(const char *s)
     cj_memcpy(new, s, len + 1);
     return (new);
 }
-
 /**
- * cj_strlen - Returns the length of a string.
+ * cj_strlen - function that returns the length of a string.
  * @s: Type char pointer
- * Return: Length of the string.
+ * Return: string length
  */
 int cj_strlen(const char *s)
 {
@@ -32,12 +30,11 @@ int cj_strlen(const char *s)
     }
     return (len);
 }
-
 /**
- * compares_chars - compare chars of strings
- * @string: input string.
+ * compares_chars - function that compares chars of strings
+ * @string: string input string.
  * @delim: delimiter.
- * Return: 1 if they are equal, 0 if not.
+ * Return: 1 else, 0 if not.
  */
 int compares_chars(char string[], const char *delim)
 {
@@ -63,12 +60,11 @@ int compares_chars(char string[], const char *delim)
         return (1);
     return (0);
 }
-
 /**
- * cj_strtok - splits a string by some delimiter.
+ * cj_strtok - function splits a string by some delimiter.
  * @string: input string.
  * @delim: delimiter.
- * Return: string splited.
+ * Return: splited string
  */
 char *cj_strtok(char string[], const char *delim)
 {
@@ -80,21 +76,21 @@ char *cj_strtok(char string[], const char *delim)
     {
         if (compares_chars(string, delim))
             return (NULL);
-        split = string; /*Store first address*/
+        split = string; /*address dtorage*/
         u = cj_strlen(string);
-        string_end = &string[u]; /*Store last address*/
+        string_end = &string[u];
     }
     string_start = split;
-    if (string_start == string_end) /*Reaching the end*/
+    if (string_start == string_end)
         return (NULL);
 
     for (bool = 0; *split; split++)
     {
-        /*Breaking loop finding the next token*/
+        /*finding function token*/
         if (split != string_start)
             if (*split && *(split - 1) == '\0')
                 break;
-        /*Replacing delimiter for null char*/
+        
         for (u = 0; delim[u]; u++)
         {
             if (*split == delim[u])
@@ -105,18 +101,17 @@ char *cj_strtok(char string[], const char *delim)
                 break;
             }
         }
-        if (bool == 0 && *split) /*String != Delim*/
+        if (bool == 0 && *split)
             bool = 1;
     }
-    if (bool == 0) /*String == Delim*/
+    if (bool == 0)
         return (NULL);
     return (string_start);
 }
-
 /**
- * cj_isdigit - defines if string passed is a number
+ * cj_isdigit - function that defines if string passed is a number
  * @s: input string
- * Return: 1 if string is a number. 0 otherwise.
+ * Return: 1 if string is a number else 0
  */
 int cj_isdigit(const char *s)
 {

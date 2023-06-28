@@ -1,9 +1,8 @@
 #include "proshell.h"
-
 /**
- * e_env - the error info for env in get_env.
- * @dtsh: data relevant (counter, arguments)
- * Return: an error message.
+ * e_env - function for the error info for env in get_env.
+ * @dtsh: data
+ * Return: error message
  */
 char *e_env(project_shell *dtsh)
 {
@@ -35,10 +34,9 @@ char *e_env(project_shell *dtsh)
 
 	return (errors);
 }
-
 /**
- * e_path_126 - error info for path and failure denied permission.
- * @dtsh: data relevant (counter, arguments).
+ * e_path_126 - function for error info for path and failure denied permission.
+ * @dtsh: data
  * Return: error string.
  */
 char *e_path_126(project_shell *dtsh)

@@ -1,8 +1,7 @@
 #include "proshell.h"
-
 /**
- * cj_get_help - function that retrieves help messages according builtin
- * @dtsh: data structure (args and input)
+ * cj_get_help - function that retrieves help messages
+ * @dtsh: data structure
  * Return: Return 0
 */
 int cj_get_help(project_shell *dtsh)

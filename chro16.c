@@ -1,8 +1,7 @@
 #include "proshell.h"
 /**
- * cj_cmp_env_name - compares env variables names
- * with the name passed.
- * @nenv: name of the environment variable
+ * cj_cmp_env_name - function that compares env variables names wit name passed
+ * @nenv: environment variable name
  * @name: name passed
  * Return: 0 if are not equal. Another value if they are.
  */
@@ -21,11 +20,10 @@ int cj_cmp_env_name(const char *nenv, const char *name)
 	return (k + 1);
 }
 /**
- * cj_getenv - get an environment variable
- * @name: name of the environment variable
+ * cj_getenv - function to get an environment variable
+ * @name: environment variable name
  * @_environ: environment variable
- * Return: value of the environment variable if is found.
- * In other case, returns NULL.
+ * Return: the value of envir variabe else NULL
  */
 char *cj_getenv(const char *name, char **_environ)
 {
@@ -48,14 +46,15 @@ char *cj_getenv(const char *name, char **_environ)
 	return (ptr_env + mov);
 }
 /**
- * cj_env - prints the evironment variables
- * @dtsh: data relevant.
+ * cj_env - function that prints the evironment variables
+ * @dtsh: data
  * Return: 1 on success.
  */
 int cj_env(project_shell *dtsh)
 {
 	int a, b;
 
+	/* for loop for agumentation */
 	for (a = 0; dtsh->_environ[a]; a++)
 	{
 

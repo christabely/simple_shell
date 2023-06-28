@@ -1,8 +1,7 @@
 #include "proshell.h"
-
 /**
- * cj_exec_line - finds builtins and commands
- * @dtsh: data relevant (args)
+ * cj_exec_line - function;that finds builtins and commands
+ * @dtsh: data for arguments
  * Return: 1 on success.
  */
 int cj_exec_line(project_shell *dtsh)

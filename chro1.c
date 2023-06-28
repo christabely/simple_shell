@@ -1,6 +1,6 @@
 #include "proshell.h"
 /**
- * cj_strcat_cd - concatenates the msg for cd error
+ * cj_strcat_cd - function that concatenates the msg for cd error
  * @dtsh: data relevant (directory)
  * @msg: message to print
  * @e: output message
@@ -35,10 +35,9 @@ cj_strcat(e, "\n");
 cj_strcat(e, "\0");
 return (e);
 }
-
 /**
  * e_get_cd - error message for cd command in get_cd
- * @dtsh: data relevant (directory)
+ * @dtsh: data
  * Return: Error message
  **/
 char *e_get_cd(project_shell *dtsh)
@@ -74,10 +73,9 @@ free(v_s);
 
 return (e);
 }
-
 /**
- * e_not_f - generic error message for command not found
- * @dtsh: data relevant (counter, arguments)
+ * e_not_f - function that generates error message for command not found
+ * @dtsh: data
  * Return: Error message
  */
 char *e_not_f(project_shell *dtsh)
@@ -107,8 +105,8 @@ free(v_s);
 return (e);
 }
 /**
- * e_exit_s - generic error message for exit in get_exit
- * @dtsh: data relevant (counter, arguments)
+ * e_exit_s - function that generstes error messages for exit in get_exit
+ * @dtsh: data
  * Return: Error message
  **/
 char *e_exit_s(project_shell *dtsh)

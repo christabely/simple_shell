@@ -1,9 +1,8 @@
 #include "proshell.h"
-
 /**
- * cj_without_comment - deletes comments from the input
- * @in: input string
- * Return: input without comments
+ * cj_without_comment - function that deletes comments from the input
+ * @in: input string input
+ * Return: input
  */
 char *cj_without_comment(char *in)
 {
@@ -33,11 +32,10 @@ char *cj_without_comment(char *in)
 
 	return (in);
 }
-
 /**
- * christy_s_loop - Loop of shell
- * @dtsh: data relevant (av, input, args)
- * Return: no return.
+ * christy_s_loop - function for loop of shell
+ * @dtsh: data
+ * Return: NULL
  */
 void christy_s_loop(project_shell *dtsh)
 {

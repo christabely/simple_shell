@@ -1,16 +1,17 @@
 #include "proshell.h"
 /**
- * cj_cd_dot - changes to the parent directory
- * @dtsh: data relevant (environ)
- * Return: no return
+ * cj_cd_dot - changes pathway to the parent directory
+ * @dtsh: data relevant for (environ) variable
+ * Return: NULL
  */
 void cj_cd_dot(project_shell *dtsh)
 {
 char pwd[PATH_MAX];
 char *d, *cp_pwd, *cp_strtok_pwd;
 
+/* getting the size of the pwd */
 getcwd(pwd, sizeof(pwd));
-cp_pwd = cj_strdup(pwd);
+cp_pwd = cj_strdup(pwd);/* environ arhuments*/
 cj_set_env("OLDPWD", cp_pwd, dtsh);
 	d = dtsh->args[1];
 	if (cj_strcmp(".", d) == 0)
@@ -24,6 +25,7 @@ cj_set_env("OLDPWD", cp_pwd, dtsh);
 		free(cp_pwd);
 		return;
 	}
+	/* ths copies string */
 	cp_strtok_pwd = cp_pwd;
 	cj_rev_string(cp_strtok_pwd);
 	cp_strtok_pwd = cj_strtok(cp_strtok_pwd, "/");
@@ -48,8 +50,8 @@ cj_set_env("OLDPWD", cp_pwd, dtsh);
 	free(cp_pwd);
 }
 /**
- * cj_cd_to - changes to a dir given by user
- * @dtsh: data relevant (directories)
+ * cj_cd_to - functon that changes pathway to a directory given by user
+ * @dtsh: data
  * Return: no return
  */
 void cj_cd_to(project_shell *dtsh)
@@ -121,8 +123,8 @@ void cj_cd_previous(project_shell *dtsh)
 	chdir(p_pwd);
 }
 /**
- * cj_cd_to_home - changes to home directory
- * @dtsh: data relevant (environ)
+ * cj_cd_to_home - changes pathway to home directory
+ * @dtsh: data
  * Return: no return
  */
 void cj_cd_to_home(project_shell *dtsh)
@@ -142,6 +144,7 @@ free(p_pwd);
 return;
 }
 
+/* if loop argument */
 if (chdir(home) == -1)
 {
 cj_get_error(dtsh, 2);
@@ -149,6 +152,7 @@ free(p_pwd);
 return;
 }
 
+/* pathway arguments */
 cj_set_env("OLDPWD", p_pwd, dtsh);
 cj_set_env("PWD", home, dtsh);
 free(p_pwd);

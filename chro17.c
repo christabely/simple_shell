@@ -1,10 +1,9 @@
 #include "proshell.h"
 /**
- * cj_copy_info - copies info to create
- * a new env or alias
- * @name: name (env or alias)
- * @value: value (env or alias)
- * Return: new env or alias.
+ * cj_copy_info - function that copies info to create a new env or alias
+ * @name: env name or alias name
+ * @value: returns value of env or alia
+ * Return: to new value of env or alias.
  */
 char *cj_copy_info(char *name, char *value)
 {
@@ -15,6 +14,7 @@ char *cj_copy_info(char *name, char *value)
 	len_value = cj_strlen(value);
 	len = len_name + len_value + 2;
 	new = malloc(sizeof(char) * (len));
+	/* copies string */
 	cj_strcpy(new, name);
 	cj_strcat(new, "=");
 	cj_strcat(new, value);
@@ -22,13 +22,12 @@ char *cj_copy_info(char *name, char *value)
 
 	return (new);
 }
-
 /**
- * cj_set_env - sets an environment variable
- * @name: name of the environment variable
- * @value: value of the environment variable
- * @dtsh: data structure (environ)
- * Return: no return
+ * cj_set_env - function that sets an environment variable
+ * @name: environment variable name
+ * @value: environment variable value
+ * @dtsh: data structure info
+ * Return: NULL
  */
 void cj_set_env(char *name, char *value, project_shell *dtsh)
 {
@@ -53,11 +52,9 @@ void cj_set_env(char *name, char *value, project_shell *dtsh)
 	dtsh->_environ[z] = cj_copy_info(name, value);
 	dtsh->_environ[z + 1] = NULL;
 }
-
 /**
- * cj_setenv - compares env variables names
- * with the name passed.
- * @dtsh: data relevant (env name and env value)
+ * cj_setenv - function that compares env variables names
+ * @dtsh: data for env name and value
  * Return: 1 on success.
  */
 int cj_setenv(project_shell *dtsh)
@@ -73,10 +70,9 @@ int cj_setenv(project_shell *dtsh)
 
 	return (1);
 }
-
 /**
- * cj_unsetenv - deletes a environment variable
- * @dtsh: data relevant (env name)
+ * cj_unsetenv - function that deletes environment variable
+ * @dtsh: data
  * Return: 1 on success.
  */
 int cj_unsetenv(project_shell *dtsh)

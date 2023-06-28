@@ -1,8 +1,8 @@
 #include "proshell.h"
 /**
- * freee_data - frees data struct
+ * freee_data - functionn that frees data struct
  * @dtsh: data struct
- * Return: no return
+ * Return: NULL
  **********************************/
 void freee_data(project_shell *dtsh)
 {
@@ -17,10 +17,10 @@ free(dtsh->_environ);
 free(dtsh->pid);
 }
 /**
- * sett_data- Initialize data struct
- * @dtsh: data struct
- * @av: arg vector
- * Return: no return
+ * sett_data- function that initialize data struct
+ * @dtsh: data
+ * @av: argument vector
+ * Return: NULL
  **********************************/
 void sett_data(project_shell *dtsh, char **av)
 {
@@ -46,9 +46,9 @@ dtsh->_environ[w] = NULL;
 dtsh->pid = cj_itoa(getpid());
 }
 /**
- * main - Entry point
- * @ac: argument count
- * @av: argument vector
+ * main - the entry or intialization point
+ * @ac: function for argument count
+ * @av: the argument vector
  * Return: 0 on success.
  */
 int main(int ac, char **av)

@@ -1,10 +1,9 @@
 #include "proshell.h"
-
 /**
- * cj_strcat - concatenates two strings
+ * cj_strcat - function that concatenates two strings
  * @dest: char pointer to the destination of the copied string
  * @src: const char pointer to the source string
- * Return: dest
+ * Return: @dest
  */
 char *cj_strcat(char *dest, const char *src)
 {
@@ -23,9 +22,8 @@ char *cj_strcat(char *dest, const char *src)
     dest[r] = '\0';
     return (dest);
 }
-
 /**
- * cj_strcpy - duplicates the string pointed to by src.
+ * cj_strcpy - function;that duplicates the string pointed to by src.
  * @dest: char pointer to the destination of the duplicated string
  * @src: char pointer to the source string
  * Return: dest
@@ -43,12 +41,11 @@ char *cj_strcpy(char *dest, char *src)
 
     return (dest);
 }
-
 /**
  * cj_strcmp - Function that compares two strings.
- * @s1: string to be compared
- * @s2: string to be compared
- * Return: 0 if the strings are equal, positive value if s1 > s2, negative value if s1 < s2
+ * @s1: string
+ * @s2: string
+ * Return: 0 for equal string, positive value if s1 > s2, negative value if s1 < s2
  */
 int cj_strcmp(char *s1, char *s2)
 {
@@ -81,12 +78,11 @@ char *cj_strchr(char *s, char c)
         return (s + p);
     return ('\0');
 }
-
 /**
- * cj_strspn - acquires the length of a prefix substring
+ * cj_strspn - function;that acquires the length of a prefix substring
  * @s: initial segment
  * @accept: accepted bytes
- * Return: number of accepted bytes
+ * Return: accepted bytes number
  */
 int cj_strspn(char *s, char *accept)
 {

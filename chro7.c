@@ -1,7 +1,6 @@
 #include "proshell.h"
-
 /**
- * cj_memcpy - copies information between void pointers.
+ * cj_memcpy - function that copies information between void pointers.
  * @newptr: the destination pointer.
  * @ptr: the source pointer.
  * @size: size of new pointer.
@@ -16,15 +15,12 @@ void cj_memcpy(void *newptr, const void *ptr, unsigned int size)
 	for (r = 0; r < size; r++)
 		char_newptr[r] = char_ptr[r];
 }
-
 /**
- * cj_realloc - reallocates the memory block.
+ * cj_realloc - function;that reallocates the memory block.
  * @ptr: pointer to the memory allocated previously.
  * @old_size: size, in bytes, of the allocated space of ptr.
  * @new_size: new size, in bytes, of the new memory block.
- * Return: ptr.
- * if new_size == old_size, returns ptr without changes.
- * if malloc fails, returns NULL.
+ * Return: NULL ptr if malloc fails, else return ptr without changes if new_size == old_size
  */
 void *cj_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
@@ -54,15 +50,12 @@ void *cj_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	free(ptr);
 	return (newptr);
 }
-
 /**
- * cj_reallocdp - reallocates a memory block of a double pointer.
+ * cj_reallocdp - function thatreallocates a memory block of a double pointer.
  * @ptr: double pointer to the memory allocated previously.
  * @old_size: size, in bytes, of the allocated space of ptr.
  * @new_size: new size, in bytes, of the new memory block.
- * Return: ptr.
- * if new_size == old_size, returns ptr without changes.
- * if malloc fails, returns NULL.
+ * Return: ptr without changes if new_size == old_size, else, return NULL if malloc fails
  */
 char **cj_reallocdp(char **ptr, unsigned int old_size, unsigned int new_size)
 {

@@ -1,8 +1,7 @@
 #include "proshell.h"
-
 /**
- * ax_help_env - Help info for builtin env.
- * Return: no return
+ * ax_help_env - function;for help info for builtin env.
+ * Return: NULL
  */
 void ax_help_env(void)
 {
@@ -12,9 +11,8 @@ void ax_help_env(void)
 	help = "Print the environment of the shell.\n";
 	write(STDOUT_FILENO, help, cj_strlen(help));
 }
-
 /**
- * ax_help_setenv - Help info for builtin setenv.
+ * ax_help_setenv - function for help info for builtin setenv.
  * Return: no return
  */
 void ax_help_setenv(void)
@@ -27,10 +25,9 @@ void ax_help_setenv(void)
 	help = "Add a new definition to the environment.\n";
 	write(STDOUT_FILENO, help, cj_strlen(help));
 }
-
 /**
- * ax_help_unsetenv - Help info for builtin unsetenv.
- * Return: no return
+ * ax_help_unsetenv - function forhelp info for builtin unsetenv.
+ * Return: NULL
  */
 void ax_help_unsetenv(void)
 {
@@ -40,10 +37,9 @@ void ax_help_unsetenv(void)
 	help = "Remove an entry completely from the environment.\n";
 	write(STDOUT_FILENO, help, cj_strlen(help));
 }
-
 /**
- * ax_help_general - Entry point for help info for help builtin.
- * Return: no return
+ * ax_help_general - fuction for entry point for help info for help builtin.
+ * Return: NULL
  */
 void ax_help_general(void)
 {
@@ -63,14 +59,13 @@ void ax_help_general(void)
 	help = "unsetenv [variable]\n";
 	write(STDOUT_FILENO, help, cj_strlen(help));
 }
-
 /**
- * ax_help_exit - Help info for builtin exit.
- * Return: no return
+ * ax_help_exit - function for help info for builtin exit.
+ * Return: NULL
  */
 void ax_help_exit(void)
 {
-	char *help = "exit: exit [n]\n Exit shell.\n";
+	char *help = "exit: exit [n]\n Exit shell.\n";/*help function msg */
 
 	write(STDOUT_FILENO, help, cj_strlen(help));
 	help = "Exits the shell with a status of N. If N is omitted, the exit";

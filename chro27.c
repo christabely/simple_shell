@@ -1,10 +1,9 @@
 #include "proshell.h"
-
 /**
- * cj_swap_char - swaps | and & for non-printed chars
- * @input: input string
+ * cj_swap_char - function that swaps | and & for non-printed chars
+ * @input: input string input
  * @bool: type of swap
- * Return: swapped string
+ * Return: the swapped string
  */
 char *cj_swap_char(char *input, int bool)
 {
@@ -45,13 +44,12 @@ char *cj_swap_char(char *input, int bool)
     }
     return input;
 }
-
 /**
- * cj_add_nodes - add separators and command lines in the lists
+ * cj_add_nodes - function that adds separators and command lines in the lists
  * @hhs: head of separator list
  * @hhl: head of command lines list
- * @input: input string
- * Return: no return
+ * @input: input string input
+ * Return: NULL
  */
 void cj_add_nodes(sep_list **hhs, line_list **hhl, char *input)
 {
@@ -79,13 +77,12 @@ void cj_add_nodes(sep_list **hhs, line_list **hhl, char *input)
         line = cj_strtok(NULL, ";|&");
     } while (line != NULL);
 }
-
 /**
- * cj_go_next - go to the next command line stored
+ * cj_go_next - function that goes to the next command line stored
  * @ll_s: separator list
  * @ll_l: command line list
- * @dtsh: data structure
- * Return: no return
+ * @dtsh: data struct
+ * Return: NULL
  */
 void cj_go_next(sep_list **ll_s, line_list **ll_l, project_shell *dtsh)
 {
@@ -120,12 +117,10 @@ void cj_go_next(sep_list **ll_s, line_list **ll_l, project_shell *dtsh)
     *ll_s = ls_s;
     *ll_l = ls_l;
 }
-
 /**
- * cj_split_commands - splits command lines according to
- * the separators ;, | and &, and executes them
- * @dtsh: data structure
- * @input: input string
+ * cj_split_commands - function that splits command lines according to the separators
+ * @dtsh: data struct
+ * @input: input strin input
  * Return: 0 to exit, 1 to continue
  */
 int cj_split_commands(project_shell *dtsh, char *input)
@@ -165,10 +160,9 @@ int cj_split_commands(project_shell *dtsh, char *input)
         return 0;
     return 1;
 }
-
 /**
- * cj_split_line - tokenizes the input string
- * @input: input string.
+ * cj_split_line - function for the token the input string
+ * @input: input string inlut
  * Return: string splitted.
  */
 char **cj_split_line(char *input)

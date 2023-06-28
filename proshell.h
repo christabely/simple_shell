@@ -19,16 +19,15 @@
 /* Points to an array of pointers to strings called the "environment" */
 extern char **environ;
 
-
 /**
- * struct data - struct that contains all relevant data on runtime
- * @av: argument vector
- * @input: command line written by the user
- * @args: tokens of the command line
- * @status: last status of the shell
- * @counter: lines counter
- * @_environ: environment variable
- * @pid: process ID of the shell
+ * struct data - struct function that contains all data.
+ * @av: the argument vector for functio
+ * @input: the command line written by user
+ * @args: the argument token of the command line
+ * @status: shell last status
+ * @counter: function to count lines
+ * @_environ: the environment variable passed
+ * @pid: the shell process identification
  */
 typedef struct data
 {
@@ -42,10 +41,10 @@ typedef struct data
 } project_shell;
 
 /**
- * struct sep_list_s - single linked list
+ * struct sep_list_s - function for asingle linked list
  * @separator: ; | &
  * @next: next node
- * Description: single linked list to store separators
+ * Description: the single linked list to store separators
  */
 typedef struct sep_list_s
 {
@@ -54,10 +53,10 @@ typedef struct sep_list_s
 } sep_list;
 
 /**
- * struct line_list_s - single linked list
- * @line: command line
- * @next: next node
- * Description: single linked list to store command lines
+ * struct line_list_s - struct function for single linked list
+ * @line: the command line
+ * @next: the next node for function
+ * Description: a single linked list to store command lines
  */
 typedef struct line_list_s
 {
@@ -66,12 +65,12 @@ typedef struct line_list_s
 } line_list;
 
 /**
- * struct r_var_list - single linked list
- * @len_var: length of the variable
- * @val: value of the variable
- * @len_val: length of the value
+ * struct r_var_list - function single linked list
+ * @len_var: length of variable
+ * @val: variable value
+ * @len_val: value length
  * @next: next node
- * Description: single linked list to store variables
+ * Description: a single linked list to store variables
  */
 typedef struct r_var_list
 {
@@ -82,9 +81,9 @@ typedef struct r_var_list
 } r_var;
 
 /**
- * struct builtin_s - Builtin struct for command args.
- * @name: The name of the command builtin i.e cd, exit, env
- * @f: data type pointer function.
+ * struct builtin_s - struct builtin struct for command arguments.
+ * @name: Command builtin names such as  i.e cd, exit, env
+ * @f: data pointer function type
  */
 typedef struct builtin_s
 {
@@ -97,11 +96,13 @@ char *e_get_cd(project_shell *dtsh);
 char *e_not_f(project_shell *dtsh);
 char *e_exit_s(project_shell *dtsh);
 char *cj_strdup(const char *s);
+/* myhelper functions */
 int cj_strlen(const char *s);
 int compare_chars(char string[], const char *delim);
 char *cj_strtok(char string[], const char *delim);
 int cj_isdigit(const char *s);
 void cj_rev_string(char *s);
+/*function to navigate directory */
 void cj_cd_dot(project_shell *dtsh);
 void cj_cd_to(project_shell *dtsh);
 void cj_cd_previous(project_shell *dtsh);
@@ -110,6 +111,7 @@ int cj_cd_shell(project_shell *dtsh);
 int repeat_chars(char *input, int z);
 int cj_e_s_p(char *input, int z, char lt);
 int cj_first_char(char *input, int *z);
+/*functions */
 void p_x_e(project_shell *dtsh, char *input, int z, int bool);
 int c_x_e(project_shell *dtsh, char *input);
 int cj_exec_line(project_shell *dtsh);
@@ -119,6 +121,7 @@ int cj_get_error(project_shell *dtsh, int ueval);
 int cj_get_help(project_shell *dtsh);
 void cj_bring_line(char **lptr, size_t *i, char *buffer, size_t k);
 ssize_t cj_get_line(char **lptr, size_t *i, FILE *stream);
+/* my function;argumentations */
 void cj_get_sigint(int sig);
 char *cj_read_line(int *iff);
 char *cj_without_comment(char *in);
@@ -129,6 +132,7 @@ void cj_go_next(sep_list **l_s, line_list **l_l, project_shell *dtsh);
 int cj_split_commands(project_shell *dtsh, char *input);
 char **cj_split_line(char *input);
 void ax_help_env(void);
+/* more helper functions */
 void ax_help_setenv(void);
 void ax_help_unsetenv(void);
 void ax_help_general(void);
@@ -140,6 +144,7 @@ sep_list *cj_add_sep_node_end(sep_list **head, char sep);
 void cj_free_sep_list(sep_list **head);
 line_list *cj_add_line_node_end(line_list **head, char *line);
 void cj_free_line_list(line_list **head);
+/* node functions */
 r_var *cj_add_rvar_node(r_var **head, int lvar, char *val, int lval);
 void cj_free_rvar_list(r_var **head);
 void cj_memcpy(void *newptr, const void *ptr, unsigned int size);
@@ -151,6 +156,7 @@ int cj_atoi(char *s);
 char *cj_strcat(char *dest, const char *src);
 char *cj_strcpy(char *dest, char *src);
 int cj_strcmp(char *s1, char *s2);
+/* functions more */
 char *cj_strchr(char *s, char c);
 int cj_strspn(char *s, char *accept);
 void cj_check_env(r_var **h, char *in, project_shell *data);
@@ -168,6 +174,7 @@ int cj_is_cdir(char *path, int *n);
 char *cj_which(char *cmd, char **_environ);
 int cj_is_executable(project_shell *dtsh);
 int cj_check_error_cmd(char *d, project_shell *dtsh);
+/* other helper functions */
 int cj_cmd_exec(project_shell *dtsh);
 char *e_env(project_shell *dtsh);
 char *e_path_126(project_shell *dtsh);
