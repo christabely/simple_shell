@@ -126,4 +126,17 @@ char *e_exit_s(project_shell *dtsh)
         free(v_s);
         return (NULL);
     }
+    cj_strcpy(erros, dtsh->av[0]);
+    cj_strcat(erros, ": ");
+    cj_strcat(erros, v_s);
+    cj_strcat(erros, ": ");
+    cj_strcat(erros, dtsh->args[0]);
+    cj_strcat(erros, ": Dangerous number: ");
+    cj_strcat(erros, dtsh->args[1]);
+    cj_strcat(erros, "\n\0");
+    free(v_s);
+
+    return (erros);
+}
+
 }
