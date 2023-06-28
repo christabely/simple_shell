@@ -106,3 +106,25 @@ char *e_not_f(project_shell *dtsh)
     free(v_s);
     return (e);
     }
+/**
+ * e_exit_s - generic error message for exit in get_exit
+ * @dtsh: data relevant (counter, arguments)
+ * Return: Error message
+ **/
+char *e_exit_s(project_shell *dtsh)
+{
+    int length;
+    char *erros;
+    char *v_s;
+
+    v_s = cj_itoa(dtsh->counter);
+    length = cj_strlen(dtsh->av[0]) + cj_strlen(v_s);
+    length += cj_strlen(dtsh->args[0]) + cj_strlen(dtsh->args[1]) + 23;
+    erros = malloc(sizeof(char) * (length + 1));
+    if (erros == 0)
+    {
+        free(v_s);
+        return (NULL);
+    }
+   
+
