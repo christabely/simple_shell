@@ -1,19 +1,19 @@
-#include "phiros.h"
+#include "proshell.h"
 /**
- * pr_get_sigint - Handle crtl + c call in prompt
+ * cj_get_sigint - Handle crtl + c call in prompt
  * @sig: Signal handler
  */
-void pr_get_sigint(int sig)
+void cj_get_sigint(int sig)
 {
 	(void)sig;
 	write(STDOUT_FILENO, "\n^-^ ", 5);
 }
 /**
- * pr_read_line- reads the input string.
+ * cj_read_line - reads the input string.
  * @iff: return value of getline function
  * Return: input string
  */
-char *pr_read_line(int *iff)
+char *cj_read_line(int *iff)
 {
 	char *input = NULL;
 	size_t bufsize = 0;
