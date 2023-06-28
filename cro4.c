@@ -1,7 +1,7 @@
 #include "proshell.h"
 
 /**
- * cj_help - Help info for builtin help.
+ * ax_help - Help info for builtin help.
  * Return: no return
  */
 void ax_help(void)
@@ -16,7 +16,7 @@ void ax_help(void)
 }
 
 /**
- * cj_help_alias - Help info for builtin alias.
+ * ax_help_alias - Help info for builtin alias.
  * Return: no return
  */
 void ax_help_alias(void)
@@ -29,7 +29,7 @@ void ax_help_alias(void)
 }
 
 /**
- * cj_help_cd - Help info for builtin cd.
+ * ax_help_cd - Help info for builtin cd.
  * Return: no return
  */
 void ax_help_cd(void)
