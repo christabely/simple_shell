@@ -1,62 +1,63 @@
-#include "phiros.h"
+#include "proshell.h"
 /**
- * pr_is_cdir - checks ":" if is in the current directory.
+ * cj_is_cdir - checks ":" if is in the current directory.
  * @path: type char pointer char.
- * @m: type int pointer of index.
+ * @n: type int pointer of index.
  * Return: 1 if the path is searchable in the cd, 0 otherwise.
  */
-int pr_is_cdir(char *path, int *m)
+int cj_is_cdir(char *path, int *n)
 {
-	if (path[*m] == ':')
+	if (path[*n] == ':')
 		return (1);
 
-	while (path[*m] != ':' && path[*m])
+	while (path[*n] != ':' && path[*n])
 	{
-		*m += 1;
+		*n += 1;
 	}
 
-	if (path[*m])
-		*m += 1;
+	if (path[*n])
+		*n += 1;
 
 	return (0);
 }
+
 /**
- * pr_which - locates a command
+ * cj_which - locates a command
  * @cmd: command name
  * @_environ: environment variable
  * Return: location of the command.
  */
-char *pr_which(char *cmd, char **_environ)
+char *cj_which(char *cmd, char **_environ)
 {
-	char *path, *ptr_path, *token_path, *d;
-	int len_dir, len_cmd, u;
+	char *path, *ptr_path, *token_path, *dr;
+	int len_dir, len_cmd, a;
 	struct stat st;
 
-	path = pr_getenv("PATH", _environ);
+	path = cj_getenv("PATH", _environ);
 	if (path)
 	{
-		ptr_path = pr_strdup(path);
-		len_cmd = pr_strlen(cmd);
-		token_path = pr_strtok(ptr_path, ":");
-		u = 0;
+		ptr_path = cj_strdup(path);
+		len_cmd = cj_strlen(cmd);
+		token_path = cj_strtok(ptr_path, ":");
+		a = 0;
 		while (token_path != NULL)
 		{
-			if (pr_is_cdir(path, &u))
+			if (cj_is_cdir(path, &a))
 				if (stat(cmd, &st) == 0)
 					return (cmd);
-			len_dir = pr_strlen(token_path);
-			d = malloc(len_dir + len_cmd + 2);
-			pr_strcpy(d, token_path);
-			pr_strcat(d, "/");
-			pr_strcat(d, cmd);
-			pr_strcat(d, "\0");
-			if (stat(d, &st) == 0)
+			len_dir = cj_strlen(token_path);
+			dr = malloc(len_dir + len_cmd + 2);
+			cj_strcpy(dr, token_path);
+			cj_strcat(dr, "/");
+			cj_strcat(dr, cmd);
+			cj_strcat(dr, "\0");
+			if (stat(dr, &st) == 0)
 			{
 				free(ptr_path);
-				return (d);
+				return (dr);
 			}
-			free(d);
-			token_path = pr_strtok(NULL, ":");
+			free(dr);
+			token_path = cj_strtok(NULL, ":");
 		}
 		free(ptr_path);
 		if (stat(cmd, &st) == 0)
@@ -68,68 +69,70 @@ char *pr_which(char *cmd, char **_environ)
 			return (cmd);
 	return (NULL);
 }
+
 /**
- * pr_is_executable - determines if is an executable
- * @dsh: data structure
+ * cj_is_executable - determines if is an executable
+ * @dtsh: data structure
  * Return: 0 if is not an executable, other number if it does
  */
-int pr_is_executable(phiros_shell *dsh)
+int cj_is_executable(project_shell *dtsh)
 {
 	struct stat st;
-	int u;
+	int a;
 	char *input;
 
-	input = dsh->args[0];
-	for (u = 0; input[u]; u++)
+	input = dtsh->args[0];
+	for (a = 0; input[a]; a++)
 	{
-		if (input[u] == '.')
+		if (input[a] == '.')
 		{
-			if (input[u + 1] == '.')
+			if (input[a + 1] == '.')
 				return (0);
-			if (input[u + 1] == '/')
+			if (input[a + 1] == '/')
 				continue;
 			else
 				break;
 		}
-		else if (input[u] == '/' && u != 0)
+		else if (input[a] == '/' && a != 0)
 		{
-			if (input[u + 1] == '.')
+			if (input[a + 1] == '.')
 				continue;
-			u++;
+			a++;
 			break;
 		}
 		else
 			break;
 	}
-	if (u == 0)
+	if (a == 0)
 		return (0);
 
-	if (stat(input + u, &st) == 0)
+	if (stat(input + a, &st) == 0)
 	{
-		return (u);
+		return (a);
 	}
-	pr_get_error(dsh, 127);
+	cj_get_error(dtsh, 127);
 	return (-1);
 }
+
 /**
- * pr_check_error_cmd - verifies if user has permissions to access
+ * cj_check_error_cmd - verifies if user has permissions to access
  * @d: destination directory
- * @dsh: data structure
+ * @dtsh: data structure
  * Return: 1 if there is an error, 0 if not
  */
-int pr_check_error_cmd(char *d, phiros_shell *dsh)
+int cj_check_error_cmd(char *d, project_shell *dtsh)
 {
 	if (d == NULL)
 	{
-		pr_get_error(dsh, 127);
+		cj_get_error(dtsh, 127);
 		return (1);
 	}
 
-	if (pr_strcmp(dsh->args[0], d) != 0)
+	if (cj_strcmp(dtsh->args[0], d) != 0)
 	{
 		if (access(d, X_OK) == -1)
 		{
-			pr_get_error(dsh, 126);
+			cj_get_error(dtsh, 126);
 			free(d);
 			return (1);
 		}
@@ -137,9 +140,9 @@ int pr_check_error_cmd(char *d, phiros_shell *dsh)
 	}
 	else
 	{
-		if (access(dsh->args[0], X_OK) == -1)
+		if (access(dtsh->args[0], X_OK) == -1)
 		{
-			pr_get_error(dsh, 126);
+			cj_get_error(dtsh, 126);
 			return (1);
 		}
 	}
@@ -148,11 +151,11 @@ int pr_check_error_cmd(char *d, phiros_shell *dsh)
 }
 
 /**
- * pr_cmd_exec - executes command lines
- * @dsh: data relevant
+ * cj_cmd_exec - executes command lines
+ * @dtsh: data relevant
  * Return: 1 on success.
  */
-int pr_cmd_exec(phiros_shell *dsh)
+int cj_cmd_exec(project_shell *dtsh)
 {
 	pid_t pd;
 	pid_t wpd;
@@ -161,13 +164,13 @@ int pr_cmd_exec(phiros_shell *dsh)
 	char *d;
 	(void) wpd;
 
-	exec = pr_is_executable(dsh);
+	exec = cj_is_executable(dtsh);
 	if (exec == -1)
 		return (1);
 	if (exec == 0)
 	{
-		d = pr_which(dsh->args[0], dsh->_environ);
-		if (pr_check_error_cmd(d, dsh) == 1)
+		d = cj_which(dtsh->args[0], dtsh->_environ);
+		if (cj_check_error_cmd(d, dtsh) == 1)
 			return (1);
 	}
 
@@ -175,14 +178,14 @@ int pr_cmd_exec(phiros_shell *dsh)
 	if (pd == 0)
 	{
 		if (exec == 0)
-			d = pr_which(dsh->args[0], dsh->_environ);
+			d = cj_which(dtsh->args[0], dtsh->_environ);
 		else
-			d = dsh->args[0];
-		execve(d + exec, dsh->args, dsh->_environ);
+			d = dtsh->args[0];
+		execve(d + exec, dtsh->args, dtsh->_environ);
 	}
 	else if (pd < 0)
 	{
-		perror(dsh->av[0]);
+		perror(dtsh->av[0]);
 		return (1);
 	}
 	else
@@ -192,6 +195,6 @@ int pr_cmd_exec(phiros_shell *dsh)
 		} while (!WIFEXITED(state) && !WIFSIGNALED(state));
 	}
 
-	dsh->status = state / 256;
+	dtsh->status = state / 256;
 	return (1);
 }
