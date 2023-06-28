@@ -1,27 +1,26 @@
-#include "phiros.h"
+#include "proshell.h"
 
 /**
- * repeat_char - counts the repetitions of a char
+ * repeat_chars - counts the repetitions of a char
  * @input: input string
- * @u: index
+ * @z: index
  * Return: repetitions
  */
-int repeat_char(char *input, int u)
+int repeat_chars(char *input, int z)
 {
 	if (*(input - 1) == *input)
-		return (repeat_char(input - 1, u + 1));
+		return (repeat_chars(input - 1, z + 1));
 
-	return (u);
+	return (z);
 }
 /**
- * pr_e_s_p - finds syntax errors
+ * cj_e_s_p - finds syntax errors
  * @input: input string
- * @u: index
- * @last: last char read
- * Return: index of error. 0 when there are no
- * errors
+ * @z: index
+ * @lt: last char read
+ * Return: index of error. 0 when there are no errors
  */
-int pr_e_s_p(char *input, int u, char last)
+int cj_e_s_p(char *input, int z, char lt)
 {
 	int c;
 
@@ -30,54 +29,55 @@ int pr_e_s_p(char *input, int u, char last)
 		return (0);
 
 	if (*input == ' ' || *input == '\t')
-		return (pr_e_s_p(input + 1, u + 1, last));
+		return (cj_e_s_p(input + 1, z + 1, lt));
 
 	if (*input == ';')
-		if (last == '|' || last == '&' || last == ';')
-			return (u);
+		if (lt == '|' || lt == '&' || lt == ';')
+			return (z);
 
 	if (*input == '|')
 	{
-		if (last == ';' || last == '&')
-			return (u);
+		if (lt == ';' || lt == '&')
+			return (z);
 
-		if (last == '|')
+		if (lt == '|')
 		{
-			c = repeat_char(input, 0);
+			c = repeat_chars(input, 0);
 			if (c == 0 || c > 1)
-				return (u);
+				return (z);
 		}
 	}
 
 	if (*input == '&')
 	{
-		if (last == ';' || last == '|')
-			return (u);
+		if (lt == ';' || lt == '|')
+			return (z);
 
-		if (last == '&')
+		if (lt == '&')
 		{
-			c = repeat_char(input, 0);
+			c = repeat_chars(input, 0);
 			if (c == 0 || c > 1)
-				return (u);
+				return (z);
 		}
 	}
 
-	return (pr_e_s_p(input + 1, u + 1, *input));
+	return (cj_e_s_p(input + 1, z + 1, *input));
 }
+
 /**
- * pr_first_char - finds index of the first char
+ * cj_first_char - finds index of the first char
  * @input: input string
- * @u: index
+ * @z: index
  * Return: 1 if there is an error. 0 in other case.
  */
-int pr_first_char(char *input, int *u)
+int cj_first_char(char *input, int *z)
 {
-	for (*u = 0; input[*u]; *u += 1)
+	for (*z = 0; input[*z]; *z += 1)
 	{
-		if (input[*u] == ' ' || input[*u] == '\t')
+		if (input[*z] == ' ' || input[*z] == '\t')
 			continue;
 
-		if (input[*u] == ';' || input[*u] == '|' || input[*u] == '&')
+		if (input[*z] == ';' || input[*z] == '|' || input[*z] == '&')
 			return (-1);
 
 		break;
@@ -85,83 +85,86 @@ int pr_first_char(char *input, int *u)
 
 	return (0);
 }
+
 /**
- * p_s_e - prints when a syntax error is found
- * @dsh: data structure
+ * p_x_e - prints when a syntax error is found
+ * @dtsh: data structure
  * @input: input string
- * @u: index of the error
+ * @z: index of the error
  * @bool: to control msg error
  * Return: no return
  */
-void p_s_e(phiros_shell *dsh, char *input, int u, int bool)
+void p_x_e(project_shell *dtsh, char *input, int z, int bool)
 {
 	char *msg, *msg2, *msg3, *e, *counter;
-	int lth;
+	int length;
 
-	if (input[u] == ';')
+	if (input[z] == ';')
 	{
 		if (bool == 0)
-			msg = (input[u + 1] == ';' ? ";;" : ";");
+			msg = (input[z + 1] == ';' ? ";;" : ";");
 		else
-			msg = (input[u - 1] == ';' ? ";;" : ";");
+			msg = (input[z - 1] == ';' ? ";;" : ";");
 	}
 
-	if (input[u] == '|')
-		msg = (input[u + 1] == '|' ? "||" : "|");
+	if (input[z] == '|')
+		msg = (input[z + 1] == '|' ? "||" : "|");
 
-	if (input[u] == '&')
-		msg = (input[u + 1] == '&' ? "&&" : "&");
+	if (input[z] == '&')
+		msg = (input[z + 1] == '&' ? "&&" : "&");
 
 	msg2 = ": Syntax error: \"";
 	msg3 = "\" unexpected\n";
-	counter = pr_itoa(dsh->counter);
-	lth = pr_strlen(dsh->av[0]) + pr_strlen(counter);
-	lth += pr_strlen(msg) + pr_strlen(msg2) + pr_strlen(msg3) + 2;
+	counter = cj_itoa(dtsh->counter);
+	length = cj_strlen(dtsh->av[0]) + cj_strlen(counter);
+	length += cj_strlen(msg) + cj_strlen(msg2) + cj_strlen(msg3) + 2;
 
-	e = malloc(sizeof(char) * (lth + 1));
+	e = malloc(sizeof(char) * (length + 1));
 	if (e == 0)
 	{
 		free(counter);
 		return;
 	}
-	pr_strcpy(e, dsh->av[0]);
-	pr_strcat(e, ": ");
-	pr_strcat(e, counter);
-	pr_strcat(e, msg2);
-	pr_strcat(e, msg);
-	pr_strcat(e, msg3);
-	pr_strcat(e, "\0");
+	cj_strcpy(e, dtsh->av[0]);
+	cj_strcat(e, ": ");
+	cj_strcat(e, counter);
+	cj_strcat(e, msg2);
+	cj_strcat(e, msg);
+	cj_strcat(e, msg3);
+	cj_strcat(e, "\0");
 
-	write(STDERR_FILENO, e, lth);
+	write(STDERR_FILENO, e, length);
 	free(e);
 	free(counter);
 }
+
 /**
- * c_s_e - intermediate function to
+ * c_x_e - intermediate function to
  * find and print a syntax error
- * @dsh: data structure
+ * @dtsh: data structure
  * @input: input string
- * Return: 1 if there is an error. 0 in other case
+ * Return: 1 if there is an error, 0 otherwise
  */
-int c_s_e(phiros_shell *dsh, char *input)
+int c_x_e(project_shell *dtsh, char *input)
 {
 	int b = 0;
-	int f_char = 0;
-	int i = 0;
+	int f_c = 0;
+	int q = 0;
 
-	f_char = pr_first_char(input, &b);
-	if (f_char == -1)
+	f_c = cj_first_char(input, &b);
+	if (f_c == -1)
 	{
-		p_s_e(dsh, input, b, 0);
+		p_s_e(dtsh, input, b, 0);
 		return (1);
 	}
 
-	i = pr_e_s_p(input + b, 0, *(input + b));
-	if (i != 0)
+	q = cj_e_s_p(input + b, 0, *(input + b));
+	if (q != 0)
 	{
-		p_s_e(dsh, input, b + i, 1);
+		p_s_e(dtsh, input, b + q, 1);
 		return (1);
 	}
 
 	return (0);
 }
+
