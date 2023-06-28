@@ -1,30 +1,31 @@
-#include "phiros.h"
+#include "proshell.h"
 
 /**
- * pr_exit_shell - exits the shell
- * @dsh: data relevant (status and args)
+ * cj_exit_shell - exits the shell
+ * @dtsh: data relevant (status and args)
  * Return: 0 on success.
  */
-int pr_exit_shell(phiros_shell *dsh)
+int cj_exit_shell(project_shell *dtsh)
 {
-	unsigned int us;
-	int is_dig;
-	int strle_n;
-	int big_num;
+	unsigned int u;
+	int _dig;
+	int strlen_n;
+	int big_number;
 
-	if (dsh->args[1] != NULL)
+	if (dtsh->args[1] != NULL)
 	{
-		us = pr_atoi(dsh->args[1]);
-		is_dig = pr_isdigit(dsh->args[1]);
-		strle_n = pr_strlen(dsh->args[1]);
-		big_num = us > (unsigned int)INT_MAX;
-		if (!is_dig || strle_n > 10 || big_num)
+		u = cj_atoi(dtsh->args[1]);
+		_dig = cj_isdigit(dtsh->args[1]);
+		strlen_n = cj_strlen(dtsh->args[1]);
+		big_number = u > (unsigned int)INT_MAX;
+		if (!_dig || strlen_n > 10 || big_number)
 		{
-			pr_get_error(dsh, 2);
-			dsh->status = 2;
+			cj_get_error(dtsh, 2);
+			dtsh->status = 2;
 			return (1);
 		}
-		dsh->status = (us % 256);
+		dtsh->status = (u % 256);
 	}
 	return (0);
 }
+
