@@ -1,21 +1,21 @@
-#include "phiros.h"
+#include "proshell.h"
 
 /**
- * pr_exec_line - finds builtins and commands
- * @dsh: data relevant (args)
+ * cj_exec_line - finds builtins and commands
+ * @dtsh: data relevant (args)
  * Return: 1 on success.
  */
-int pr_exec_line(phiros_shell *dsh)
+int cj_exec_line(project_shell *dtsh)
 {
-	int (*builtin)(phiros_shell *dsh);
+	int (*builtin)(project_shell *dtsh);
 
-	if (dsh->args[0] == NULL)
+	if (dtsh->args[0] == NULL)
 		return (1);
 
-	builtin = pr_get_builtin(dsh->args[0]);
+	builtin = cj_get_builtin(dtsh->args[0]);
 
 	if (builtin != NULL)
-		return (builtin(dsh));
+		return (builtin(dtsh));
 
-	return (pr_cmd_exec(dsh));
+	return (cj_cmd_exec(dtsh));
 }
