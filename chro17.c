@@ -1,122 +1,124 @@
-#include "phiros.h"
+#include "proshell.h"
 /**
- * pr_copy_info - copies info to create
+ * cj_copy_info - copies info to create
  * a new env or alias
  * @name: name (env or alias)
  * @value: value (env or alias)
  * Return: new env or alias.
  */
-char *pr_copy_info(char *name, char *value)
+char *cj_copy_info(char *name, char *value)
 {
 	char *new;
 	int len_name, len_value, len;
 
-	len_name = pr_strlen(name);
-	len_value = pr_strlen(value);
+	len_name = cj_strlen(name);
+	len_value = cj_strlen(value);
 	len = len_name + len_value + 2;
 	new = malloc(sizeof(char) * (len));
-	pr_strcpy(new, name);
-	pr_strcat(new, "=");
-	pr_strcat(new, value);
-	pr_strcat(new, "\0");
+	cj_strcpy(new, name);
+	cj_strcat(new, "=");
+	cj_strcat(new, value);
+	cj_strcat(new, "\0");
 
 	return (new);
 }
+
 /**
- * pr_set_env - sets an environment variable
+ * cj_set_env - sets an environment variable
  * @name: name of the environment variable
  * @value: value of the environment variable
- * @dsh: data structure (environ)
+ * @dtsh: data structure (environ)
  * Return: no return
  */
-void pr_set_env(char *name, char *value, phiros_shell *dsh)
+void cj_set_env(char *name, char *value, project_shell *dtsh)
 {
-	int u;
+	int z;
 	char *var_env, *name_env;
 
-	for (u = 0; dsh->_environ[u]; u++)
+	for (z = 0; dtsh->_environ[z]; z++)
 	{
-		var_env = pr_strdup(dsh->_environ[u]);
-		name_env = pr_strtok(var_env, "=");
-		if (pr_strcmp(name_env, name) == 0)
+		var_env = cj_strdup(dtsh->_environ[z]);
+		name_env = cj_strtok(var_env, "=");
+		if (cj_strcmp(name_env, name) == 0)
 		{
-			free(dsh->_environ[u]);
-			dsh->_environ[u] = pr_copy_info(name_env, value);
+			free(dtsh->_environ[z]);
+			dtsh->_environ[z] = cj_copy_info(name_env, value);
 			free(var_env);
 			return;
 		}
 		free(var_env);
 	}
 
-	dsh->_environ = pr_reallocdp(dsh->_environ, u, sizeof(char *) * (u + 2));
-	dsh->_environ[u] = pr_copy_info(name, value);
-	dsh->_environ[u + 1] = NULL;
+	dtsh->_environ = cj_reallocdp(dtsh->_environ, z, sizeof(char *) * (z + 2));
+	dtsh->_environ[z] = cj_copy_info(name, value);
+	dtsh->_environ[z + 1] = NULL;
 }
 
 /**
- * pr_setenv - compares env variables names
+ * cj_setenv - compares env variables names
  * with the name passed.
- * @dsh: data relevant (env name and env value)
+ * @dtsh: data relevant (env name and env value)
  * Return: 1 on success.
  */
-int pr_setenv(phiros_shell *dsh)
+int cj_setenv(project_shell *dtsh)
 {
 
-	if (dsh->args[1] == NULL || dsh->args[2] == NULL)
+	if (dtsh->args[1] == NULL || dtsh->args[2] == NULL)
 	{
-		pr_get_error(dsh, -1);
+		cj_get_error(dtsh, -1);
 		return (1);
 	}
 
-	pr_set_env(dsh->args[1], dsh->args[2], dsh);
+	cj_set_env(dtsh->args[1], dtsh->args[2], dtsh);
 
 	return (1);
 }
 
 /**
- * pr_unsetenv - deletes a environment variable
- * @dsh: data relevant (env name)
+ * cj_unsetenv - deletes a environment variable
+ * @dtsh: data relevant (env name)
  * Return: 1 on success.
  */
-int pr_unsetenv(phiros_shell *dsh)
+int cj_unsetenv(project_shell *dtsh)
 {
 	char **realloc_environ;
 	char *var_env, *name_env;
-	int i, j, k;
+	int q, r, s;
 
-	if (dsh->args[1] == NULL)
+	if (dtsh->args[1] == NULL)
 	{
-		pr_get_error(dsh, -1);
+		cj_get_error(dtsh, -1);
 		return (1);
 	}
-	k = -1;
-	for (i = 0; dsh->_environ[i]; i++)
+	s = -1;
+	for (q = 0; dtsh->_environ[q]; q++)
 	{
-		var_env = pr_strdup(dsh->_environ[i]);
-		name_env = pr_strtok(var_env, "=");
-		if (pr_strcmp(name_env, dsh->args[1]) == 0)
+		var_env = cj_strdup(dtsh->_environ[q]);
+		name_env = cj_strtok(var_env, "=");
+		if (cj_strcmp(name_env, dtsh->args[1]) == 0)
 		{
-			k = i;
+			s = q;
 		}
 		free(var_env);
 	}
-	if (k == -1)
+	if (s == -1)
 	{
-		pr_get_error(dsh, -1);
+		cj_get_error(dtsh, -1);
 		return (1);
 	}
-	realloc_environ = malloc(sizeof(char *) * (i));
-	for (i = j = 0; dsh->_environ[i]; i++)
+	realloc_environ = malloc(sizeof(char *) * (q));
+	for (q = r = 0; dtsh->_environ[q]; q++)
 	{
-		if (i != k)
+		if (q != s)
 		{
-			realloc_environ[j] = dsh->_environ[i];
-			j++;
+			realloc_environ[r] = dtsh->_environ[q];
+			r++;
 		}
 	}
-	realloc_environ[j] = NULL;
-	free(dsh->_environ[k]);
-	free(dsh->_environ);
-	dsh->_environ = realloc_environ;
+	realloc_environ[r] = NULL;
+	free(dtsh->_environ[s]);
+	free(dtsh->_environ);
+	dtsh->_environ = realloc_environ;
 	return (1);
 }
+
