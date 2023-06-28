@@ -66,11 +66,11 @@ char *cj_itoa(int n)
 }
 
 /**
- * pr_atoi - changes a string to an integer.
+ * cj_atoi - changes a string to an integer.
  * @s: the input string.
  * Return: an integer.
  */
-int pr_atoi(char *s)
+int cj_atoi(char *s)
 {
 	unsigned int tally = 0, size = 0, oi = 0, pn = 1, m = 1, r;
 
