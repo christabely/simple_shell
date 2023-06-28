@@ -1,12 +1,12 @@
-#include "phiros.h"
+#include "proshell.h"
 /**
- * pr_bring_line - assigns the line var for get_line
+ * cj_bring_line - assigns the line var for get_line
  * @lptr: Buffer that store the input str
  * @buffer: str that is been called to line
  * @i: size of line
  * @k: size of buffer
  */
-void pr_bring_line(char **lptr, size_t *i, char *buffer, size_t k)
+void cj_bring_line(char **lptr, size_t *i, char *buffer, size_t k)
 {
 
 	if (*lptr == NULL)
@@ -28,18 +28,18 @@ void pr_bring_line(char **lptr, size_t *i, char *buffer, size_t k)
 	}
 	else
 	{
-		pr_strcpy(*lptr, buffer);
+		cj_strcpy(*lptr, buffer);
 		free(buffer);
 	}
 }
 /**
- * pr_get_line - Read inpt from stream
+ * cj_get_line - Read inpt from stream
  * @lptr: buffer that stores the input
  * @i: size of lineptr
  * @stream: stream to read from
  * Return: The number of bytes
  */
-ssize_t pr_get_line(char **lptr, size_t *i, FILE *stream)
+ssize_t cj_get_line(char **lptr, size_t *i, FILE *stream)
 {
 	int n;
 	static ssize_t input;
@@ -70,12 +70,12 @@ ssize_t pr_get_line(char **lptr, size_t *i, FILE *stream)
 			break;
 		}
 		if (input >= BUFSIZE)
-			buffer = pr_realloc(buffer, input, input + 1);
+			buffer = cj_realloc(buffer, input, input + 1);
 		buffer[input] = t;
 		input++;
 	}
 	buffer[input] = '\0';
-	pr_bring_line(lptr, i, buffer, input);
+	cj_bring_line(lptr, i, buffer, input);
 	retval = input;
 	if (n != 0)
 		input = 0;
