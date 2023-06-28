@@ -108,5 +108,3 @@ int cj_strspn(char *s, char *accept)
     }
     return (r);
 }
-
-// Apply the same changes to the remaining functions in the code.
