@@ -26,11 +26,11 @@ void sett_data(project_shell *dtsh, char **av)
 {
 unsigned int w = 0;
 
-dsh->av = av;
-dsh->input = NULL;
-dsh->args = NULL;
-dsh->status = 0;
-dsh->counter = 1;
+dtsh->av = av;
+dtsh->input = NULL;
+dtsh->args = NULL;
+dtsh->status = 0;
+dtsh->counter = 1;
 
 for (w = 0; environ[w]; w++)
 ;
