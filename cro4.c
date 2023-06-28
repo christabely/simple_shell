@@ -4,7 +4,7 @@
  * cj_help - Help info for builtin help.
  * Return: no return
  */
-void cj_help(void)
+void ax_help(void)
 {
 	char *help = "help: help [-dms] [pattern ...]\n";
 
@@ -19,7 +19,7 @@ void cj_help(void)
  * cj_help_alias - Help info for builtin alias.
  * Return: no return
  */
-void cj_help_alias(void)
+void ax_help_alias(void)
 {
 	char *help = "alias: alias [-p] [name[=value]...]\n";
 
@@ -32,7 +32,7 @@ void cj_help_alias(void)
  * cj_help_cd - Help info for builtin cd.
  * Return: no return
  */
-void cj_help_cd(void)
+void ax_help_cd(void)
 {
 	char *help = "cd: cd [-L|[-P [-e]] [-@]] [dir]\n";
 
