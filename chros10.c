@@ -52,7 +52,7 @@ if (string[x] == delim[y])
 z++;
 break;
 }
- y++;
+y++;
 }
 x++;
 }
